@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-
+from alembic import op
+import sqlalchemy as sa
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
