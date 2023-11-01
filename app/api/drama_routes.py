@@ -31,7 +31,7 @@ def create_drama():
     if form.validate_on_submit():
         drama_image = form.data['drama_image']
         drama_image.filename = get_unique_filename(drama_image.filename)
-        upload = upload_video_link_to_s3(drama_image)
+        upload = upload_file_to_s3(drama_image)
 
         if 'url' not in upload:
             return {'errors': [upload]}

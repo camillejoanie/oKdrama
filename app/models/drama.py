@@ -7,9 +7,9 @@ class Drama(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    drama_name = db.Column(db.Integer, nullable=False)
+    drama_name = db.Column(db.String, nullable=False)
     drama_image = db.Column(db.String, nullable=False)
-    release_date = db.Column(db.Integer, nullable=False)
+    release_date = db.Column(db.String, nullable=False)
     genre = db.Column(db.String, nullable=False)
     trailer = db.Column(db.String)
     description = db.Column(db.Text, nullable=False)
