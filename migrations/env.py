@@ -56,6 +56,18 @@ def run_migrations_offline():
         if environment == "production":
             context.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
         if environment == "production":
+            op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA}")
+        if environment == "production":
+            op.execute(f"ALTER TABLE actors SET SCHEMA {SCHEMA}")
+        if environment == "production":
+            op.execute(f"ALTER TABLE dramas SET SCHEMA {SCHEMA}")
+        if environment == "production":
+            op.execute(f"ALTER TABLE drama_actors SET SCHEMA {SCHEMA}")
+        if environment == "production":
+            op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA}")
+        if environment == "production":
+            op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA}")
+        if environment == "production":
             context.execute(f"SET search_path TO {SCHEMA}")
 
 
