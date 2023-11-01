@@ -11,6 +11,19 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+if environment == "production":
+    op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA}")
+if environment == "production":
+    op.execute(f"ALTER TABLE actors SET SCHEMA {SCHEMA}")
+if environment == "production":
+    op.execute(f"ALTER TABLE dramas SET SCHEMA {SCHEMA}")
+if environment == "production":
+    op.execute(f"ALTER TABLE drama_actors SET SCHEMA {SCHEMA}")
+if environment == "production":
+    op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA}")
+if environment == "production":
+    op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA}")
+
 # revision identifiers, used by Alembic.
 revision = '417ad8a7250b'
 down_revision = None
