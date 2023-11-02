@@ -34,7 +34,6 @@ COPY . .
 
 COPY --from=build /react-app /var/www/react-app/
 
-RUN flask db upgrade
 RUN flask seed all
 
 CMD gunicorn app:app
