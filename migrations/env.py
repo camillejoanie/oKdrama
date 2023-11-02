@@ -6,8 +6,8 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
-from alembic import context, op
-import sqlalchemy as sa
+from alembic import context
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
@@ -53,23 +53,7 @@ def run_migrations_offline():
     )
 
     with context.begin_transaction():
-        if environment == "production":
-            context.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
-        if environment == "production":
-            op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA}")
-        if environment == "production":
-            op.execute(f"ALTER TABLE actors SET SCHEMA {SCHEMA}")
-        if environment == "production":
-            op.execute(f"ALTER TABLE dramas SET SCHEMA {SCHEMA}")
-        if environment == "production":
-            op.execute(f"ALTER TABLE drama_actors SET SCHEMA {SCHEMA}")
-        if environment == "production":
-            op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA}")
-        if environment == "production":
-            op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA}")
-        if environment == "production":
-            context.execute(f"SET search_path TO {SCHEMA}")
-
+        context.run_migrations()
 
 
 def run_migrations_online():
