@@ -1,0 +1,51 @@
+.full-drama-page {
+  /* max-width: 70%;
+  width: 70%; */
+  align-content: center;
+  margin: 0px 0px;
+}
+
+.drama-page-header {
+  text-align: center;
+}
+
+.each-drama-card {
+  display: grid;
+  justify-content: center;
+  margin: 0px 100px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-column-gap: 2em;
+  grid-row-gap: 2em;
+  background-color: transparent;
+}
+
+.drama-card-navlink {
+  border: 3px solid rgb(210, 157, 171);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgb(233, 207, 215);
+  text-decoration: none;
+}
+
+/* .drama-card {
+  border: 2px dotted blue;
+} */
+
+.drama-card-img {
+  width: 200px;
+  height: 300px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+
+.drama-card-info {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.drama-card-title {
+  color: white;
+}

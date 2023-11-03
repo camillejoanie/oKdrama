@@ -14,9 +14,9 @@ def get_all_dramas():
     return jsonify([drama.to_dict() for drama in dramas])
 
 #GET SINGLE DRAMA
-@drama_routes.route('/<int:drama_id>', methods=['GET'])
-def get_single_drama(drama_id):
-    drama = Drama.query.get(drama_id)
+@drama_routes.route('/<int:id>', methods=['GET'])
+def get_single_drama(id):
+    drama = Drama.query.get(id)
     if drama:
         return drama.to_dict()
     else:
