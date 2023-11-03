@@ -1,7 +1,48 @@
+body {
+  background-color: rgb(240, 223, 228);
+}
+
 .profile-dropdown {
   position: absolute;
 }
 
 .hidden {
   display: none;
+}
+
+.logo {
+  width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 60%;
+}
+
+.nav-dramas {
+  margin-right: 30px;
+  text-decoration: none;
+}
+
+.nav-linky {
+  text-decoration: none;
+  color: rgb(210, 157, 171);
+  font-size: 20px;
+}
+
+.nav-pb {
+  margin-right: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 15%;
 }

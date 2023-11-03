@@ -1,0 +1,40 @@
+.actor-page-header {
+  text-align: center;
+}
+
+.each-actor-card {
+  display: grid;
+  justify-content: center;
+  margin: 0px 100px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-column-gap: 2em;
+  grid-row-gap: 2em;
+  background-color: transparent;
+}
+
+.actor-card-navlink {
+  border: 3px solid rgb(210, 157, 171);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgb(233, 207, 215);
+  text-decoration: none;
+}
+
+.actor-card-img {
+  width: 200px;
+  height: 300px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+
+.actor-card-info {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.actor-card-name {
+  color: white;
+}
