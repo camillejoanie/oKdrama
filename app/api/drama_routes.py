@@ -14,16 +14,16 @@ def get_all_dramas():
     return jsonify([drama.to_dict() for drama in dramas])
 
 #GET SINGLE DRAMA
-@drama_routes.route('/<int:id>')
-def get_single_drama(id):
-    drama = Drama.query.get(id)
+@drama_routes.route('/<int:drama_id>', methods=['GET'])
+def get_single_drama(drama_id):
+    drama = Drama.query.get(drama_id)
     if drama:
         return drama.to_dict()
     else:
-        return {"error": "Playlist not found"}, 404
+        return {"error": "Drama not found"}, 404
     
 #CREATE A DRAMA POST
-@drama_routes.route('/create_drama', methods=['POST'])
+@drama_routes.route('/create', methods=['POST'])
 @login_required
 def create_drama():
     form = DramaForm()
@@ -38,6 +38,7 @@ def create_drama():
         
         new_drama = Drama(
             drama_name = form.data['drama_name'],
+            user_id = form.data['user_id'],
             drama_image = upload['url'],
             release_date = form.data['release_date'],
             genre = form.data['genre'],

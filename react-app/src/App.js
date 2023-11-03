@@ -6,8 +6,10 @@ import LoginFormPage from "./components/LoginFormPage";
 import DramaPage from "./components/DramaPage";
 import ActorPage from "./components/ActorPage";
 import CreateDramaForm from "./components/CreateDrama";
+import UpdateDrama from "./components/UpdateDrama";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +28,12 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
+          </Route>
+          <Route exact path="/dramas/:dramaId/update">
+            <UpdateDrama />
           </Route>
           <Route exact path="/dramas/create">
             <CreateDramaForm />

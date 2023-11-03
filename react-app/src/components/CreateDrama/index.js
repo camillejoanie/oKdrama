@@ -19,12 +19,13 @@ function CreateDramaForm() {
   const [trailer, setTrailer] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
 
-  function errorsChecked(dramaName, releaseDate, genre, image) {
+  function errorsChecked(dramaName, releaseDate, genre, image, description) {
     const errors = {};
     if (!dramaName) errors.dramaName = "Drama name is required";
     if (!releaseDate) errors.releaseDate = "Release Date is required";
     if (!genre) errors.genre = "Genre is required";
     if (!image) errors.image = "Drama image is required";
+    if (!description) errors.image = "Description is required";
 
     setErrors(errors);
 
