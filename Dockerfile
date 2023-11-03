@@ -16,19 +16,15 @@ ARG FLASK_ENV
 ARG DATABASE_URL
 ARG REACT_APP_BASE_URL
 ARG SCHEMA
-
 ARG S3_BUCKET
 ARG S3_KEY
 ARG S3_SECRET
-
 
 WORKDIR /var/www
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
-RUN pip install boto3
-RUN pip install wtforms[email]
 
 COPY . .
 
