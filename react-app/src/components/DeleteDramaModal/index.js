@@ -34,7 +34,7 @@ function DeleteDramaModal({ dramaId, submitted }) {
           </button>
           <h2 className="delete-drama-header">Confirm Delete</h2>
           <div className="delete-drama-rusure">
-            Are you sure you want to remove this Playlist?
+            Are you sure you want to delete this Drama Post?
           </div>
           <button className="yes-delete-drama" onClick={confirmDelete}>
             Yes (Delete Drama)

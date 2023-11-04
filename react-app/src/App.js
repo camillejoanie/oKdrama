@@ -7,6 +7,7 @@ import DramaPage from "./components/DramaPage";
 import ActorPage from "./components/ActorPage";
 import CreateDramaForm from "./components/CreateDrama";
 import UpdateDrama from "./components/UpdateDrama";
+import SingleDramaPage from "./components/SingleDramaPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route exact path="/dramas/create">
             <CreateDramaForm />
+          </Route>
+          <Route path="/dramas/:dramaId">
+            <SingleDramaPage />
           </Route>
           <Route path="/dramas" component={DramaPage} />
           <Route path="/actors" component={ActorPage} />

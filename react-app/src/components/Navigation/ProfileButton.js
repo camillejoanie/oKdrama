@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory, NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
@@ -7,8 +8,11 @@ import SignupFormModal from "../SignupFormModal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+
+  const profileButton = process.env.PUBLIC_URL + "/images/CIRCLE-HEART.svg";
 
   const openMenu = () => {
     if (showMenu) return;
@@ -29,28 +33,35 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-  };
-
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    closeMenu();
+    history.push("/");
+  };
+
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="profile-button" onClick={openMenu}>
+        <img className="profile-button-heart" src={profileButton} />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
+          <div className="user-dropdown-info">
+            <li className="user-username">{user.username}</li>
+            <li className="user-email">{user.email}</li>
+            <li className="user-profile">
+              <NavLink className="user-dropdown-navlink" to="/profile">
+                Profile
+              </NavLink>
+            </li>
+            <li className="user-dropdown-logout">
               <button onClick={handleLogout}>Log Out</button>
             </li>
-          </>
+          </div>
         ) : (
           <>
             <OpenModalButton

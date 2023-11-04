@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { updateDramaThunk, getSingleDramaThunk } from "../../store/drama";
 import "./UpdateDrama.css";
 
-function UpdateDrama({ dramaId, submitted }) {
+function UpdateDrama({ submitted }) {
   const dispatch = useDispatch();
+  const { dramaId } = useParams();
   // const history = useHistory();
-  const drama = useSelector((state) => state.dramas.singleDrama);
-  console.log("HUHHHHHHHH", drama);
+  const dramaObj = useSelector((state) => state.dramas.singleDrama);
+  console.log("HUHHHHHHHH", dramaObj);
   const userId = useSelector((state) => state.session.user.id);
 
-  const [dramaName, setDramaName] = useState(drama.drama_name);
-  const [releaseDate, setReleaseDate] = useState(drama.release_date);
-  const [genre, setGenre] = useState(drama.genre);
-  const [description, setDescription] = useState(drama.description);
+  const [dramaName, setDramaName] = useState(dramaObj.drama_name || "");
+  const [releaseYear, setReleaseYear] = useState(dramaObj.release_year || "");
+  const [genre, setGenre] = useState(dramaObj.genre || "");
+  const [description, setDescription] = useState(dramaObj.description || "");
   const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -23,16 +24,16 @@ function UpdateDrama({ dramaId, submitted }) {
   }, [dispatch, dramaId]);
 
   useEffect(() => {
-    setDramaName(drama.drama_name || "");
-    setReleaseDate(drama.release_date || "");
-    setGenre(drama.genre || "");
-    setDescription(drama.description || "");
-  }, [drama]);
+    setDramaName(dramaObj.drama_name || "");
+    setReleaseYear(dramaObj.release_year || "");
+    setGenre(dramaObj.genre || "");
+    setDescription(dramaObj.description || "");
+  }, [dramaObj]);
 
-  function errorsChecked(dramaName, releaseDate, genre, description) {
+  function errorsChecked(dramaName, releaseYear, genre, description) {
     const errors = {};
     if (!dramaName) errors.dramaName = "Drama name is required";
-    if (!releaseDate) errors.releaseDate = "Release Date is required";
+    if (!releaseYear) errors.releaseYear = "Release Year is required";
     if (!genre) errors.genre = "Genre is required";
     if (!description) errors.description = "Description is required";
 
@@ -46,7 +47,7 @@ function UpdateDrama({ dramaId, submitted }) {
     setHasSubmitted(true);
     const errorsFound = errorsChecked(
       dramaName,
-      releaseDate,
+      releaseYear,
       genre,
       description
     );
@@ -55,7 +56,7 @@ function UpdateDrama({ dramaId, submitted }) {
       user_id: userId,
       id: dramaId,
       drama_name: dramaName,
-      release_date: releaseDate,
+      release_year: releaseYear,
       genre: genre,
       description: description,
     };
@@ -94,17 +95,18 @@ function UpdateDrama({ dramaId, submitted }) {
             </div>
             <div className="update-drama-form-fields">
               <label className="update-drama-label">
-                When was the K-Drama released?
-                <div className="update-drama-releasedate">
+                What year was the K-Drama released?
+                <div className="update-drama-releaseyear">
                   <input
-                    type="date"
-                    value={releaseDate}
-                    onChange={(e) => setReleaseDate(e.target.value)}
+                    type="number"
+                    value={releaseYear}
+                    onChange={(e) => setReleaseYear(e.target.value)}
+                    placeholder="Release Year"
                   />
                 </div>
               </label>
-              {hasSubmitted && errors.releaseDate && (
-                <p className="errors">{errors.releaseDate}</p>
+              {hasSubmitted && errors.releaseYear && (
+                <p className="errors">{errors.releaseYear}</p>
               )}
             </div>
             <div className="update-drama-form-fields">

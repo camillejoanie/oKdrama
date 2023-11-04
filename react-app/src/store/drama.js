@@ -59,7 +59,7 @@ export const getSingleDramaThunk = (dramaId) => async (dispatch) => {
 };
 
 export const createDramaThunk = (drama) => async (dispatch) => {
-  const response = await fetch(`/api/dramas/create`, {
+  const response = await fetch(`/api/dramas/create_drama`, {
     method: "POST",
     // headers: { "Content-Type": "application/json" },
     body: drama,
@@ -76,7 +76,7 @@ export const createDramaThunk = (drama) => async (dispatch) => {
 };
 
 export const updateDramaThunk = (drama) => async (dispatch) => {
-  const response = await fetch(`/api/dramas/${drama.id}/update`, {
+  const response = await fetch(`/api/dramas/${drama.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(drama),

@@ -1,5 +1,7 @@
 body {
   background-color: rgb(240, 223, 228);
+  font-family: "Kosugi Maru", sans-serif;
+  margin-bottom: 30px;
 }
 
 .profile-dropdown {
@@ -39,10 +41,89 @@ body {
   font-size: 20px;
 }
 
+.nav-linky:hover {
+  color: white;
+  cursor: pointer;
+}
+
 .nav-pb {
   margin-right: 40px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 15%;
+}
+
+.profile-button {
+  border: none;
+  background-color: transparent;
+}
+
+.profile-button-heart {
+  width: 35px;
+}
+
+.profile-button-heart:hover {
+  cursor: pointer;
+}
+
+.user-dropdown-info {
+  background-color: rgb(210, 157, 171);
+  position: absolute;
+  z-index: 999;
+  margin-left: -165px;
+  top: 20px;
+  width: 150px;
+  height: 180px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style-type: none;
+  padding: 5px;
+  border-radius: 15px;
+  color: white;
+}
+
+.user-dropdown-info li {
+  margin-bottom: 15px;
+}
+
+.user-username {
+  margin-top: 10px;
+}
+
+.user-dropdown-navlink {
+  text-decoration: none;
+  color: white;
+  font-size: 17px;
+  padding: 10px 40px;
+  width: 160px;
+}
+
+.user-dropdown-navlink:hover {
+  color: rgb(210, 157, 171);
+  background-color: white;
+  transition: background-color 0.3s ease-in;
+  border-radius: 15px;
+  width: 160px;
+  cursor: pointer;
+}
+
+.user-dropdown-logout button {
+  border: none;
+  width: 140px;
+  padding: 10px;
+  border-radius: 15px;
+  font-family: "Kosugi Maru", sans-serif;
+  color: rgb(210, 157, 171);
+  font-size: 18px;
+  margin-bottom: -10px;
+}
+
+.user-dropdown-logout button:hover {
+  background-color: rgb(240, 223, 228);
+  color: red;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s ease-in;
 }
