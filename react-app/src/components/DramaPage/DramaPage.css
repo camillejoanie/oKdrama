@@ -7,6 +7,7 @@
 
 .drama-page-header {
   text-align: center;
+  color: rgb(210, 157, 171);
 }
 
 .each-drama-card {
@@ -29,9 +30,18 @@
   text-decoration: none;
 }
 
-/* .drama-card {
-  border: 2px dotted blue;
-} */
+.drama-card-navlink:hover {
+  transform: scale(1.05);
+  background-color: rgb(210, 157, 171);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.drama-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .drama-card-img {
   width: 200px;

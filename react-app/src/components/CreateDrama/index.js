@@ -4,13 +4,13 @@ import { useHistory } from "react-router-dom";
 import { createDramaThunk } from "../../store/drama";
 import "./CreateDrama.css";
 
-function CreateDramaForm() {
+function CreateDramaForm({ reload }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  //   const userId = useSelector((state) => state.session.user.id);
+  const userId = useSelector((state) => state.session.user.id);
 
   const [dramaName, setDramaName] = useState("");
-  const [releaseDate, setReleaseDate] = useState("");
+  const [releaseYear, setReleaseYear] = useState("");
   const [genre, setGenre] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({});
@@ -19,10 +19,10 @@ function CreateDramaForm() {
   const [trailer, setTrailer] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
 
-  function errorsChecked(dramaName, releaseDate, genre, image, description) {
+  function errorsChecked(dramaName, releaseYear, genre, image, description) {
     const errors = {};
     if (!dramaName) errors.dramaName = "Drama name is required";
-    if (!releaseDate) errors.releaseDate = "Release Date is required";
+    if (!releaseYear) errors.releaseYear = "Release Year is required";
     if (!genre) errors.genre = "Genre is required";
     if (!image) errors.image = "Drama image is required";
     if (!description) errors.image = "Description is required";
@@ -36,7 +36,7 @@ function CreateDramaForm() {
     e.preventDefault();
     const errorsFound = errorsChecked(
       dramaName,
-      releaseDate,
+      releaseYear,
       genre,
       description,
       image,
@@ -45,7 +45,7 @@ function CreateDramaForm() {
 
     const formData = new FormData();
     formData.append("drama_name", dramaName);
-    formData.append("release_date", releaseDate);
+    formData.append("release_year", releaseYear);
     formData.append("genre", genre);
     formData.append("description", description);
     formData.append("drama_image", image);
@@ -56,7 +56,7 @@ function CreateDramaForm() {
       setImageLoading(true);
 
       if (response) {
-        // reload();
+        reload();
         history.push(`/dramas/${response.id}`);
       }
     }
@@ -101,17 +101,19 @@ function CreateDramaForm() {
               )}
               {imageLoading && <p>Loading...</p>}
             </div>
-            <div className="create-drama-releasedate">
+            <div className="create-drama-releaseyear">
               <label className="create-drama-label">
-                When was the K-Drama released?
+                What year was the K-Drama released?
               </label>
               <input
-                type="date"
-                name="Release Date"
-                min="1999-10-06"
-                max="2023-09-11"
-                required
+                type="number"
+                value={releaseYear}
+                onChange={(e) => setReleaseYear(e.target.value)}
+                placeholder="Release Year"
               />
+              {errors.releaseYear && (
+                <p className="create-drama-errors">{errors.releaseYear}</p>
+              )}
             </div>
             <div className="create-drama-genre">
               <label className="create-drama-label">
@@ -152,11 +154,13 @@ function CreateDramaForm() {
                 <p className="create-drama-errors">{errors.description}</p>
               )}
             </div>
-            <div className="create-drama-button-container">
-              <button type="submit" className="create-drama-button">
-                Post your K-Drama!
-              </button>
-            </div>
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="create-drama-button"
+            >
+              Post your K-Drama!
+            </button>
           </form>
         </div>
       </div>

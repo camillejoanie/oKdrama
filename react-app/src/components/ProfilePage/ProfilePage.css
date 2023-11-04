@@ -1,0 +1,142 @@
+.entire-profile-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-main-container {
+  background-color: rgb(233, 207, 215);
+  border-radius: 20px;
+  display: flex;
+  height: auto;
+  width: 70%;
+  border: 2px solid rgb(210, 157, 171);
+}
+
+.profile-page-header {
+  color: rgb(210, 157, 171);
+}
+
+.profile-left-navs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  border-right: 2px dotted rgb(210, 157, 171);
+}
+
+.profile-drama-content,
+.user-dramas-container,
+.user-actors-container {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.profile-page-navlink {
+  text-decoration: none;
+}
+
+.user-drama-name:hover,
+.user-actor-name:hover {
+  color: rgb(210, 157, 171);
+  cursor: pointer;
+}
+
+.your-dramas,
+.your-actors {
+  /* border: 1px solid pink; */
+  border: none;
+  box-shadow: 2px 2px 2px 2px;
+  padding: 10px;
+  width: 120px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  background-color: rgb(240, 223, 228);
+  font-family: "Kosugi Maru", sans-serif;
+  color: rgb(210, 157, 171);
+}
+
+.your-dramas:hover,
+.your-actors:hover {
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-drama-info,
+.user-actor-info {
+  padding: 20px;
+  height: 360px;
+}
+
+.user-drama-img,
+.user-actor-img {
+  width: 180px;
+  height: 270px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px rgb(123, 85, 95);
+}
+
+.user-drama-img:hover,
+.user-actor-img:hover {
+  transform: scale(1.05);
+}
+
+.user-drama-name,
+.user-actor-name {
+  width: 180px;
+  text-align: center;
+  margin: 10px 0px;
+  color: white;
+}
+
+.user-drama-buttons,
+.user-actor-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.update-drama-navlink,
+.update-actor-navlink {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(210, 157, 171);
+  height: 20px;
+  margin-top: 1px;
+  background-color: rgb(240, 223, 228);
+  /* width: 70px; */
+  padding: 5px 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px;
+}
+
+.update-drama-navlink:hover,
+.update-actor-navlink:hover {
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-delete-button button {
+  border: none;
+  background: none;
+  width: 80px;
+  font-size: 17px;
+  font-family: "Kosugi Maru", sans-serif;
+  color: rgb(210, 157, 171);
+  background-color: rgb(240, 223, 228);
+  padding: 7px 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px;
+}
+
+.user-delete-button button:hover {
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

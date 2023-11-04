@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
-import UpdateDrama from "../UpdateDrama";
 import DeleteDramaModal from "../DeleteDramaModal";
+import DeleteActorModal from "../DeleteActorModal";
 import { getDramasThunk } from "../../store/drama";
 import { getActorsThunk } from "../../store/actor";
 import "./ProfilePage.css";
 
 function ProfilePage({ reload }) {
   const dispatch = useDispatch();
+  const { dramaId } = useParams();
   const user = useSelector((state) => state.session.user);
-  console.log("HEHEHEHEEH", user);
   const allDramasObj = useSelector((state) => state.dramas.allDramas);
   const allActorsObj = useSelector((state) => state.actors.allActors);
   const [submitted, setSubmitted] = useState(false);
   const [reloaded, setReloaded] = useState(reload);
 
-  const dramasArr = Object.keys(allDramasObj);
-  const actorsArr = Object.keys(allActorsObj);
+  const dramasArr = Object.values(allDramasObj);
+  const actorsArr = Object.values(allActorsObj);
 
   const [currDrama, setCurrDrama] = useState(true);
   const [currActor, setCurrActor] = useState(false);
@@ -58,6 +58,7 @@ function ProfilePage({ reload }) {
   const userActorsArr = user
     ? actorsArr.filter((actor) => actor.user_id === user.id)
     : [];
+  console.log("AHHHHHHH", userActorsArr);
 
   return (
     <div className="entire-profile-page">
@@ -89,15 +90,15 @@ function ProfilePage({ reload }) {
           {currDrama ? (
             <div className="user-dramas-container">
               {userDramasArr.length > 0 ? (
-                userDramasArr.map((dramaId) => {
-                  const drama = allDramasObj[dramaId];
+                userDramasArr.map((drama) => {
                   return (
                     <div key={drama.id} className="user-dramas">
-                      <NavLink
-                        to={`/dramas/${drama.id}`}
-                        className="profile-page-navlink"
-                      >
-                        <div className="user-drama-info">
+                      {" "}
+                      <div className="user-drama-info">
+                        <NavLink
+                          to={`/dramas/${drama.id}`}
+                          className="profile-page-navlink"
+                        >
                           <img
                             className="user-drama-img"
                             src={drama.drama_image}
@@ -105,16 +106,18 @@ function ProfilePage({ reload }) {
                           <div className="user-drama-name">
                             {drama.drama_name}
                           </div>
-                          <div className="user-drama-buttons">
-                            <NavLink
-                              to={`/dramas/${dramaId}/update`}
-                              className="update-drama-navlink"
-                            >
-                              Update
-                            </NavLink>
+                        </NavLink>
+                        <div className="user-drama-buttons">
+                          <NavLink
+                            to={`/dramas/${drama.id}/update`}
+                            className="update-drama-navlink"
+                          >
+                            Update
+                          </NavLink>
+                          <div className="user-delete-button">
                             <OpenModalButton
                               className="delete-drama-button"
-                              ButtonText="Delete"
+                              buttonText="Delete"
                               modalComponent={
                                 <DeleteDramaModal
                                   submitted={() => setSubmitted(true)}
@@ -124,7 +127,7 @@ function ProfilePage({ reload }) {
                             />
                           </div>
                         </div>
-                      </NavLink>
+                      </div>
                     </div>
                   );
                 })
@@ -135,15 +138,14 @@ function ProfilePage({ reload }) {
           ) : currActor ? (
             <div className="user-actors-container">
               {userActorsArr.length > 0 ? (
-                userActorsArr.map((actorId) => {
-                  const actor = allActorsObj[actorId];
+                userActorsArr.map((actor) => {
                   return (
                     <div key={actor.id} className="user-actors">
-                      <NavLink
-                        to={`/actorss/${actor.id}`}
-                        className="profile-page-navlink"
-                      >
-                        <div className="user-actor-info">
+                      <div className="user-actor-info">
+                        <NavLink
+                          to={`/actors/${actor.id}`}
+                          className="profile-page-navlink"
+                        >
                           <img
                             className="user-actor-img"
                             src={actor.actor_image}
@@ -151,26 +153,28 @@ function ProfilePage({ reload }) {
                           <div className="user-actor-name">
                             {actor.actor_name}
                           </div>
-                          <div className="user-actor-buttons">
-                            <NavLink
-                              to={`/actors/${actorId}/update`}
-                              className="update-actor-navlink"
-                            >
-                              Update
-                            </NavLink>
-                            {/* <OpenModalButton
+                        </NavLink>
+                        <div className="user-actor-buttons">
+                          <NavLink
+                            to={`/actors/${actor.id}/update`}
+                            className="update-actor-navlink"
+                          >
+                            Update
+                          </NavLink>
+                          <div className="user-delete-button">
+                            <OpenModalButton
                               className="delete-actor-button"
-                              ButtonText="Delete"
+                              buttonText="Delete"
                               modalComponent={
                                 <DeleteActorModal
                                   submitted={() => setSubmitted(true)}
                                   actorId={actor.id}
                                 />
                               }
-                            /> */}
+                            />
                           </div>
                         </div>
-                      </NavLink>
+                      </div>
                     </div>
                   );
                 })

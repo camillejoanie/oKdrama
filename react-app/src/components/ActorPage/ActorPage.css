@@ -1,5 +1,6 @@
 .actor-page-header {
   text-align: center;
+  color: rgb(210, 157, 171);
 }
 
 .each-actor-card {
@@ -20,6 +21,12 @@
   padding: 20px;
   background-color: rgb(233, 207, 215);
   text-decoration: none;
+}
+
+.actor-card-navlink:hover {
+  transform: scale(1.05);
+  background-color: rgb(210, 157, 171);
+  transition: background-color 0.3s ease-in-out;
 }
 
 .actor-card-img {

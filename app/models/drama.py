@@ -7,9 +7,9 @@ class Drama(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    drama_name = db.Column(db.String, nullable=False)
+    drama_name = db.Column(db.String(255), nullable=False)
     drama_image = db.Column(db.String, nullable=False)
-    release_date = db.Column(db.String, nullable=False)
+    release_year = db.Column(db.Integer, nullable=False)
     genre = db.Column(db.String, nullable=False)
     trailer = db.Column(db.String)
     description = db.Column(db.Text, nullable=False)
@@ -20,14 +20,12 @@ class Drama(db.Model):
     like = db.relationship("Like", back_populates="drama")
     review = db.relationship("Review", back_populates="drama")
 
-
-
     def to_dict(self):
         return {
             'id': self.id,
             'drama_name': self.drama_name,
             'drama_image': self.drama_image,
-            'release_date': self.release_date,
+            'release_year': self.release_year,
             'genre': self.genre,
             'trailer': self.trailer,
             'description': self.description,
