@@ -6,8 +6,8 @@ import dramasReducer from "./drama";
 
 const rootReducer = combineReducers({
   session,
-  actors: actorsReducer,
   dramas: dramasReducer,
+  actors: actorsReducer,
 });
 
 let enhancer;

@@ -37,8 +37,8 @@ def create_drama():
             return {'errors': [upload]}
         
         new_drama = Drama(
-            drama_name = form.data['drama_name'],
             user_id = form.data['user_id'],
+            drama_name = form.data['drama_name'],
             drama_image = upload['url'],
             release_year = form.data['release_year'],
             genre = form.data['genre'],

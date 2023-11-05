@@ -8,6 +8,7 @@ import ActorPage from "./components/ActorPage";
 import CreateDramaForm from "./components/CreateDrama";
 import UpdateDrama from "./components/UpdateDrama";
 import SingleDramaPage from "./components/SingleDramaPage";
+import SingleActorPage from "./components/SingleActorPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
@@ -43,6 +44,9 @@ function App() {
             <SingleDramaPage />
           </Route>
           <Route path="/dramas" component={DramaPage} />
+          <Route path="/actors/:actorId">
+            <SingleActorPage />
+          </Route>
           <Route path="/actors" component={ActorPage} />
           <Route>Page Not Found</Route>
         </Switch>

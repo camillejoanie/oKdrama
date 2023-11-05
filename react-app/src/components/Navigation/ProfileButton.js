@@ -49,7 +49,7 @@ function ProfileButton({ user }) {
         <img className="profile-button-heart" src={profileButton} />
       </button>
       <ul className={ulClassName} ref={ulRef}>
-        {user ? (
+        {user && (
           <div className="user-dropdown-info">
             <li className="user-username">{user.username}</li>
             <li className="user-email">{user.email}</li>
@@ -62,20 +62,6 @@ function ProfileButton({ user }) {
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </div>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
         )}
       </ul>
     </>

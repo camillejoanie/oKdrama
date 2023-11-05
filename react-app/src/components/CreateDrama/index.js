@@ -154,13 +154,15 @@ function CreateDramaForm({ reload }) {
                 <p className="create-drama-errors">{errors.description}</p>
               )}
             </div>
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="create-drama-button"
-            >
-              Post your K-Drama!
-            </button>
+            <div className="create-drama-submit">
+              <button
+                type="submit"
+                // onClick={handleSubmit}
+                className="create-drama-button"
+              >
+                Post your K-Drama!
+              </button>
+            </div>
           </form>
         </div>
       </div>
