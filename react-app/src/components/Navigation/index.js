@@ -31,22 +31,25 @@ function Navigation({ isLoaded }) {
         </div>
       </div>
       <div className="nav-pb">
-        {/* Conditionally render "ProfileButton" or "Login/Sign Up" buttons based on user login status */}
         {isLoaded ? (
           sessionUser ? (
             <ProfileButton user={sessionUser} className="nav-button" />
           ) : (
-            // If the user is not logged in, display the "Log In" and "Sign Up" buttons using modals
             <>
-              <OpenModalButton
-                buttonText="Log In"
-                modalComponent={<LoginFormModal />}
-              />
-
-              <OpenModalButton
-                buttonText="Sign Up"
-                modalComponent={<SignupFormModal />}
-              />
+              <div className="signup">
+                <OpenModalButton
+                  className="signup-button"
+                  buttonText="Sign Up"
+                  modalComponent={<SignupFormModal />}
+                />
+              </div>
+              <div className="login">
+                <OpenModalButton
+                  className="login-button"
+                  buttonText="Log In"
+                  modalComponent={<LoginFormModal />}
+                />
+              </div>
             </>
           )
         ) : null}

@@ -68,6 +68,9 @@ function SingleDramaPage() {
           <div className="single-drama-rating">**Rating**</div>
           <h1 className="single-drama-title">{dramaObj.drama_name}</h1>
           <div className="single-drama-desc">{dramaObj.description}</div>
+          <div className="single-drama-releaseyear">
+            Released: {dramaObj.release_year}
+          </div>
           <div className="single-drama-genre">Genre: {dramaObj.genre}</div>
         </div>
       </div>
