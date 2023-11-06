@@ -9,13 +9,13 @@ function UpdateDrama({ submitted }) {
   const { dramaId } = useParams();
   // const history = useHistory();
   const dramaObj = useSelector((state) => state.dramas.singleDrama);
-  console.log("HUHHHHHHHH", dramaObj);
   const userId = useSelector((state) => state.session.user.id);
 
   const [dramaName, setDramaName] = useState(dramaObj.drama_name || "");
   const [releaseYear, setReleaseYear] = useState(dramaObj.release_year || "");
   const [genre, setGenre] = useState(dramaObj.genre || "");
   const [description, setDescription] = useState(dramaObj.description || "");
+  // const [dramaImage, setDramaImage] = useState(dramaObj.drama_image?.url || "");
   const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -28,6 +28,7 @@ function UpdateDrama({ submitted }) {
     setReleaseYear(dramaObj.release_year || "");
     setGenre(dramaObj.genre || "");
     setDescription(dramaObj.description || "");
+    // setDramaImage(dramaObj.dramaImage?.url || "");
   }, [dramaObj]);
 
   function errorsChecked(dramaName, releaseYear, genre, description) {
@@ -56,6 +57,7 @@ function UpdateDrama({ submitted }) {
       user_id: userId,
       id: dramaId,
       drama_name: dramaName,
+      drama_image: dramaObj.drama_image,
       release_year: releaseYear,
       genre: genre,
       description: description,
@@ -65,7 +67,8 @@ function UpdateDrama({ submitted }) {
       const response = await dispatch(updateDramaThunk(updatedDrama));
 
       if (response) {
-        submitted();
+        // submitted();
+        dispatch(getSingleDramaThunk(dramaId));
         // history.push(`/dramas/${response.id}`);
       }
     }

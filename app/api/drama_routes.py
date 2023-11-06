@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, Drama
 from app.forms.drama_form import DramaForm
 from .auth_routes import validation_errors_to_error_messages

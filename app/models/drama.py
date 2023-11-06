@@ -29,5 +29,5 @@ class Drama(db.Model):
             'genre': self.genre,
             'trailer': self.trailer,
             'description': self.description,
-            'user_id': self.user_id
+            'user_id': self.user_id,
         }

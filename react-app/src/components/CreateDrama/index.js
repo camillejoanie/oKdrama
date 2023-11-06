@@ -44,6 +44,7 @@ function CreateDramaForm({ reload }) {
     );
 
     const formData = new FormData();
+    formData.append("user_id", userId);
     formData.append("drama_name", dramaName);
     formData.append("release_year", releaseYear);
     formData.append("genre", genre);
