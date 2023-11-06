@@ -51,7 +51,7 @@ def create_drama():
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
     
-# UPDATE DRAMA POST
+#UPDATE DRAMA POST
 @drama_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_drama(id):
@@ -68,6 +68,39 @@ def update_drama(id):
         return drama.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# # UPDATE DRAMA POST
+# @drama_routes.route('/<int:id>', methods=['PUT'])
+# @login_required
+# def update_drama(id):
+#     form = DramaForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+
+#     if form.validate_on_submit():
+#         drama = Drama.query.get(id)
+
+#         # Check if a new image is provided, and update it if necessary
+#         if 'drama_image' in request.files:
+#             drama_image = request.files['drama_image']
+#             drama_image.filename = get_unique_filename(drama_image.filename)
+#             upload = upload_file_to_s3(drama_image)
+
+#             if 'url' not in upload:
+#                 return {'errors': [upload]}
+
+#             drama.drama_image = upload['url']
+
+#         # Update other fields
+#         drama.drama_name = form.data['drama_name']
+#         drama.release_year = form.data['release_year']
+#         drama.genre = form.data['genre']
+#         drama.description = form.data['description']
+
+#         db.session.commit()
+#         return drama.to_dict()
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
 
 #DELETE DRAMA POST
 @drama_routes.route('/<int:id>', methods=['DELETE'])
