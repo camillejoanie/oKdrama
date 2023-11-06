@@ -44,6 +44,7 @@ function CreateDramaForm({ reload }) {
     );
 
     const formData = new FormData();
+    formData.append("user_id", userId);
     formData.append("drama_name", dramaName);
     formData.append("release_year", releaseYear);
     formData.append("genre", genre);
@@ -154,13 +155,15 @@ function CreateDramaForm({ reload }) {
                 <p className="create-drama-errors">{errors.description}</p>
               )}
             </div>
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="create-drama-button"
-            >
-              Post your K-Drama!
-            </button>
+            <div className="create-drama-submit">
+              <button
+                type="submit"
+                // onClick={handleSubmit}
+                className="create-drama-button"
+              >
+                Post your K-Drama!
+              </button>
+            </div>
           </form>
         </div>
       </div>

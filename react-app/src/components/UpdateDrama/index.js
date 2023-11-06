@@ -9,13 +9,13 @@ function UpdateDrama({ submitted }) {
   const { dramaId } = useParams();
   // const history = useHistory();
   const dramaObj = useSelector((state) => state.dramas.singleDrama);
-  console.log("HUHHHHHHHH", dramaObj);
   const userId = useSelector((state) => state.session.user.id);
 
   const [dramaName, setDramaName] = useState(dramaObj.drama_name || "");
   const [releaseYear, setReleaseYear] = useState(dramaObj.release_year || "");
   const [genre, setGenre] = useState(dramaObj.genre || "");
   const [description, setDescription] = useState(dramaObj.description || "");
+  // const [dramaImage, setDramaImage] = useState(dramaObj.drama_image || "");
   const [errors, setErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -28,13 +28,21 @@ function UpdateDrama({ submitted }) {
     setReleaseYear(dramaObj.release_year || "");
     setGenre(dramaObj.genre || "");
     setDescription(dramaObj.description || "");
+    // setDramaImage(dramaObj.drama_image || "");
   }, [dramaObj]);
 
-  function errorsChecked(dramaName, releaseYear, genre, description) {
+  function errorsChecked(
+    dramaName,
+    releaseYear,
+    genre,
+    // dramaImage,
+    description
+  ) {
     const errors = {};
     if (!dramaName) errors.dramaName = "Drama name is required";
     if (!releaseYear) errors.releaseYear = "Release Year is required";
     if (!genre) errors.genre = "Genre is required";
+    // if (!dramaImage) errors.dramaImage = "Drama Image is required";
     if (!description) errors.description = "Description is required";
 
     setErrors(errors);
@@ -50,12 +58,16 @@ function UpdateDrama({ submitted }) {
       releaseYear,
       genre,
       description
+      // dramaImage
     );
+
+    console.log("WOWOWOWOWO", dramaObj.drama_image);
 
     const updatedDrama = {
       user_id: userId,
       id: dramaId,
       drama_name: dramaName,
+      drama_image: dramaObj.drama_image,
       release_year: releaseYear,
       genre: genre,
       description: description,
@@ -66,10 +78,13 @@ function UpdateDrama({ submitted }) {
 
       if (response) {
         submitted();
+        dispatch(getSingleDramaThunk(dramaId));
         // history.push(`/dramas/${response.id}`);
       }
     }
   };
+
+  if (!dramaObj.id) return null;
 
   return (
     <div className="entire-update-dramas">

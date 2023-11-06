@@ -1,0 +1,98 @@
+.entire-login {
+  width: 300px;
+  height: 400px;
+  padding: 30px;
+  background-color: rgb(240, 223, 228);
+  border-radius: 30px;
+}
+
+.login-header {
+  text-align: center;
+  color: rgb(210, 157, 171);
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.login-inputs form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-email,
+.login-password {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 250px;
+}
+
+.login-email label,
+.login-password label {
+  margin-bottom: 10px;
+  color: rgb(210, 157, 171);
+}
+
+.login-email input,
+.login-password input {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.login-submit-button button {
+  border: none;
+  padding: 10px;
+  width: 200px;
+  border-radius: 15px;
+  font-family: "Kosugi Maru", sans-serif;
+  margin-bottom: 15px;
+  height: 40px;
+  background-color: white;
+  color: rgb(210, 157, 171);
+}
+
+.login-submit-button button:hover {
+  background-color: rgb(210, 157, 171);
+  color: white;
+  transition: background-color 0.5s, color 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.demo-user-button button {
+  border: none;
+  font-family: "Kosugi Maru", sans-serif;
+  padding: 15px;
+  border-radius: 15px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(210, 157, 171);
+  color: white;
+}
+
+.demo-user-button button:hover {
+  background-color: white;
+  color: rgb(210, 157, 171);
+  transition: background-color 0.5s, color 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgb(210, 157, 171);
+  font-weight: bold;
+}
+
+.login-error {
+  color: red;
+}
