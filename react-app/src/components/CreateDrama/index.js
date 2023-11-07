@@ -58,7 +58,7 @@ function CreateDramaForm({ reload }) {
       const response = await dispatch(createDramaThunk(formData));
       setImageLoading(true);
 
-      if (response) {
+      if (response && response.id) {
         reload();
         history.push(`/dramas/${response.id}`);
       }

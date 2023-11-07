@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams, useHistory } from "react-router-dom";
 import { updateActorThunk, getSingleActorThunk } from "../../store/actor";
 import "./UpdateActor.css";
 
-function UpdateActor({ submitted }) {
+function UpdateActor({ reload }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { actorId } = useParams();
   const actorObj = useSelector((state) => state.actors.singleActor);
   const userId = useSelector((state) => state.session.user.id);
@@ -30,8 +31,9 @@ function UpdateActor({ submitted }) {
     const errors = {};
     if (!actorName) errors.actorName = "Actor name is required";
     if (!debutYear) errors.debutYear = "Debut year is required";
-    if (debutYear.length !== 4)
+    if (debutYear.length !== 4 && debutYear !== actorObj.debut_year) {
       errors.debutYear = "Debut year must be 4 integers long";
+    }
     if (bio.length < 6) errors.bio = "Bio must be at least 6 characters";
 
     setErrors(errors);
@@ -57,8 +59,9 @@ function UpdateActor({ submitted }) {
       const response = await dispatch(updateActorThunk(updatedActor));
 
       if (response) {
-        submitted();
+        reload();
         dispatch(getSingleActorThunk(actorId));
+        history.push(`/actors/${actorId}`);
       }
     }
   };

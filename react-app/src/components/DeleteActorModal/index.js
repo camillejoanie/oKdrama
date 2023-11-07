@@ -9,7 +9,6 @@ function DeleteActorModal({ actorId, submitted }) {
   const [exist, setExist] = useState(true);
   const { closeModal } = useModal();
   const actor = useSelector((state) => state.actors.singleActor);
-  console.log("UWUUWUWUWUWUW", actorId);
 
   const confirmDelete = (e) => {
     e.preventDefault();

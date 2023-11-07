@@ -4,10 +4,10 @@ import { useHistory, useParams } from "react-router-dom";
 import { updateDramaThunk, getSingleDramaThunk } from "../../store/drama";
 import "./UpdateDrama.css";
 
-function UpdateDrama({ submitted }) {
+function UpdateDrama({ reload }) {
   const dispatch = useDispatch();
   const { dramaId } = useParams();
-  // const history = useHistory();
+  const history = useHistory();
   const dramaObj = useSelector((state) => state.dramas.singleDrama);
   const userId = useSelector((state) => state.session.user.id);
 
@@ -31,19 +31,18 @@ function UpdateDrama({ submitted }) {
     // setDramaImage(dramaObj.drama_image || "");
   }, [dramaObj]);
 
-  function errorsChecked(
-    dramaName,
-    releaseYear,
-    genre,
-    // dramaImage,
-    description
-  ) {
+  function errorsChecked(dramaName, releaseYear, genre, description) {
     const errors = {};
     if (!dramaName) errors.dramaName = "Drama name is required";
     if (!releaseYear) errors.releaseYear = "Release Year is required";
+    if (releaseYear.length !== 4 && releaseYear !== dramaObj.release_year) {
+      errors.releaseYear = "Release Year must be 4 integers";
+    }
     if (!genre) errors.genre = "Genre is required";
     // if (!dramaImage) errors.dramaImage = "Drama Image is required";
     if (!description) errors.description = "Description is required";
+    if (description.length < 6)
+      errors.description = "Description must be at least 6 characters";
 
     setErrors(errors);
 
@@ -61,8 +60,6 @@ function UpdateDrama({ submitted }) {
       // dramaImage
     );
 
-    console.log("WOWOWOWOWO", dramaObj.drama_image);
-
     const updatedDrama = {
       user_id: userId,
       id: dramaId,
@@ -76,10 +73,10 @@ function UpdateDrama({ submitted }) {
     if (Object.keys(errorsFound).length === 0) {
       const response = await dispatch(updateDramaThunk(updatedDrama));
 
-      if (response) {
-        submitted();
+      if (response && response.id) {
+        reload();
         dispatch(getSingleDramaThunk(dramaId));
-        // history.push(`/dramas/${response.id}`);
+        history.push(`/dramas/${response.id}`);
       }
     }
   };

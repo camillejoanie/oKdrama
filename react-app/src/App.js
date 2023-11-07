@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import { authenticate } from "./store/session";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import DramaPage from "./components/DramaPage";
@@ -11,20 +12,22 @@ import UpdateDrama from "./components/UpdateDrama";
 import UpdateActor from "./components/UpdateActor";
 import SingleDramaPage from "./components/SingleDramaPage";
 import SingleActorPage from "./components/SingleActorPage";
-import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
+  const [reload, setReload] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(authenticate())
+      .then(() => setIsLoaded(true))
+      .then(() => setReload(false));
   }, [dispatch]);
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation reload={reload} isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route path="/login">
@@ -37,20 +40,20 @@ function App() {
             <ProfilePage />
           </Route>
           <Route exact path="/dramas/:dramaId/update">
-            <UpdateDrama />
+            <UpdateDrama reload={() => setReload(true)} />
           </Route>
           <Route exact path="/dramas/create">
-            <CreateDramaForm />
+            <CreateDramaForm reload={() => setReload(true)} />
           </Route>
           <Route path="/dramas/:dramaId">
             <SingleDramaPage />
           </Route>
           <Route path="/dramas" component={DramaPage} />
           <Route exact path="/actors/:actorId/update">
-            <UpdateActor />
+            <UpdateActor reload={() => setReload(true)} />
           </Route>
           <Route exact path="/actors/create">
-            <CreateActorForm />
+            <CreateActorForm reload={() => setReload(true)} />
           </Route>
           <Route path="/actors/:actorId">
             <SingleActorPage />
