@@ -89,72 +89,66 @@ function UpdateDrama({ submitted }) {
   return (
     <div className="entire-update-dramas">
       <div className="update-background">
-        <div className="update-drama-header">Update your K-Drama Post!</div>
+        <h1 className="update-drama-header">Update your K-Drama Post!</h1>
         <div className="update-drama-form-container">
           <form className="update-drama-form" onSubmit={handleSubmit}>
-            <div className="update-drama-form-fields">
+            <div className="update-drama-title">
               <label className="update-drama-label">
                 What is the name of your K-Drama?
-                <div className="update-drama-title">
-                  <input
-                    type="text"
-                    value={dramaName}
-                    onChange={(e) => setDramaName(e.target.value)}
-                    placeholder="Drama Name"
-                  />
-                </div>
               </label>
+              <input
+                type="text"
+                value={dramaName}
+                onChange={(e) => setDramaName(e.target.value)}
+                placeholder="Drama Name"
+              />
               {hasSubmitted && errors.dramaName && (
-                <p className="errors">{errors.dramaName}</p>
+                <p className="update-drama-errors">{errors.dramaName}</p>
               )}
             </div>
-            <div className="update-drama-form-fields">
+            <div className="update-drama-releaseyear">
               <label className="update-drama-label">
                 What year was the K-Drama released?
-                <div className="update-drama-releaseyear">
-                  <input
-                    type="number"
-                    value={releaseYear}
-                    onChange={(e) => setReleaseYear(e.target.value)}
-                    placeholder="Release Year"
-                  />
-                </div>
               </label>
+              <input
+                type="number"
+                value={releaseYear}
+                onChange={(e) => setReleaseYear(e.target.value)}
+                placeholder="Release Year"
+              />
               {hasSubmitted && errors.releaseYear && (
-                <p className="errors">{errors.releaseYear}</p>
+                <p className="update-drama-errors">{errors.releaseYear}</p>
               )}
             </div>
-            <div className="update-drama-form-fields">
+            <div className="update-drama-genre">
               <label className="update-drama-label">
                 What is the genre of the K-Drama?
-                <div className="update-drama-genre">
-                  <input
-                    type="text"
-                    value={genre}
-                    onChange={(e) => setGenre(e.target.value)}
-                    placeholder="Genre"
-                  />
-                </div>
               </label>
+              <input
+                type="text"
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
+                placeholder="Genre"
+              />
               {hasSubmitted && errors.genre && (
-                <p className="errors">{errors.genre}</p>
+                <p className="update-drama-errors">{errors.genre}</p>
               )}
             </div>
-            <div className="update-drama-form-fields">
+            <div className="update-drama-desc">
               <label className="update-drama-label">
                 Please provide a brief synopsis of the drama. (No Spoilers!)
-                <textarea
-                  type="textarea"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Description"
-                />
               </label>
+              <textarea
+                type="textarea"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Description"
+              />
               {hasSubmitted && errors.description && (
-                <p className="errors">{errors.description}</p>
+                <p className="update-drama-errors">{errors.description}</p>
               )}
             </div>
-            <div className="update-drama-button-container">
+            <div className="update-drama-submit">
               <button type="submit" className="update-drama-button">
                 Update your K-Drama!
               </button>

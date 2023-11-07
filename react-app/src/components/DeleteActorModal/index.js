@@ -41,12 +41,14 @@ function DeleteActorModal({ actorId, submitted }) {
           <div className="delete-actor-rusure">
             {`Are you sure you want to delete ${actorName}?`}
           </div>
-          <button className="yes-delete-actor" onClick={confirmDelete}>
-            Yes (Delete Actor)
-          </button>
-          <button className="no-delete-actor" onClick={cancelDelete}>
-            No (Keep Actor)
-          </button>
+          <div className="delete-actor-buttons">
+            <button className="yes-delete-actor" onClick={confirmDelete}>
+              Yes (Delete Actor)
+            </button>
+            <button className="no-delete-actor" onClick={cancelDelete}>
+              No (Keep Actor)
+            </button>
+          </div>
         </div>
       )}
     </div>

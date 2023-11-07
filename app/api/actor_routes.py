@@ -23,7 +23,7 @@ def get_single_actor(id):
         return {"error": "Actor not found"}, 404
 
 # CREATE AN ACTOR
-@actor_routes.route('/', methods=['POST'])
+@actor_routes.route('/create_actor', methods=['POST'])
 @login_required
 def create_actor():
     form = ActorForm()
@@ -37,6 +37,7 @@ def create_actor():
             return {'errors': [upload]}
 
         new_actor = Actor(
+            user_id=form.data['user_id'],
             actor_name=form.data['actor_name'],
             actor_image=upload['url'],
             debut_year=form.data['debut_year'],

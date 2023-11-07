@@ -36,12 +36,14 @@ function DeleteDramaModal({ dramaId, submitted }) {
           <div className="delete-drama-rusure">
             Are you sure you want to delete this Drama Post?
           </div>
-          <button className="yes-delete-drama" onClick={confirmDelete}>
-            Yes (Delete Drama)
-          </button>
-          <button className="no-delete-drama" onClick={cancelDelete}>
-            No (Keep Drama)
-          </button>
+          <div className="delete-drama-buttons">
+            <button className="yes-delete-drama" onClick={confirmDelete}>
+              Yes (Delete Drama)
+            </button>
+            <button className="no-delete-drama" onClick={cancelDelete}>
+              No (Keep Drama)
+            </button>
+          </div>
         </div>
       )}
     </div>

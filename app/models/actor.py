@@ -24,5 +24,5 @@ class Actor(db.Model):
             'actor_image': self.actor_image,
             'debut_year': self.debut_year,
             'bio': self.bio,
-            'user_id': self.user_id
+            'user_id': self.user_id,
         }
