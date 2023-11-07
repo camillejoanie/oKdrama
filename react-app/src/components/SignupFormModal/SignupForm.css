@@ -1,0 +1,78 @@
+.entire-signup-modal {
+  width: 350px;
+  height: 550px;
+  padding: 30px;
+  background-color: rgb(240, 223, 228);
+  border-radius: 30px;
+}
+
+.signup-header {
+  text-align: center;
+  color: rgb(210, 157, 171);
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-email,
+.signup-username,
+.signup-names,
+.signup-password,
+.signup-confirm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 300px;
+}
+
+.signup-label {
+  margin-bottom: 10px;
+  color: rgb(210, 157, 171);
+}
+
+.signup-email input,
+.signup-username input,
+.signup-password input,
+.signup-confirm input {
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+}
+
+.signup-names-label {
+  display: grid;
+  grid-template-columns: auto auto;
+  /* grid-gap: 10px; */
+  column-gap: 10px;
+}
+
+.signup-names-label input {
+  width: 135px;
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.signup-button {
+  width: 200px;
+  margin: 10px 0px;
+  height: 38px;
+  padding: 10px;
+  border: none;
+  background-color: white;
+  border-radius: 20px;
+  font-family: "Kosugi Maru", sans-serif;
+  color: rgb(210, 157, 171);
+  font-size: 18px;
+}
+
+.signup-button:hover {
+  background-color: rgb(210, 157, 171);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.4s, color 0.4s;
+}

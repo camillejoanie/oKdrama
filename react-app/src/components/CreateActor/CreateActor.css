@@ -1,4 +1,4 @@
-.entire-create-drama {
+.entire-create-actor {
   background-image: url(https://64.media.tumblr.com/2bd546bbc72da9a8ccf251922b1e05ac/tumblr_mqpoziggwt1s5jjtzo1_640.gif);
   height: 100%;
   /* width: 600px; */
@@ -8,51 +8,47 @@
   padding-bottom: 30px;
 }
 
-.create-drama-header {
+.create-actor-header {
   text-align: center;
   color: rgb(210, 157, 171);
 }
 
-.create-drama-title,
-.create-drama-img,
-.create-drama-releaseyear,
-.create-drama-genre,
-.create-drama-trailer,
-.create-drama-desc {
+.create-actor-title,
+.create-actor-img,
+.create-actor-debutyear,
+.create-actor-bio {
   display: flex;
   flex-direction: column;
   padding: 10px;
 }
 
-.create-drama-label {
+.create-actor-label {
   font-size: 19px;
   color: rgb(210, 157, 171);
   margin-bottom: 10px;
 }
 
-.create-drama-title input,
-.create-drama-img input,
-.create-drama-releaseyear input,
-.create-drama-genre input,
-.create-drama-trailer input {
+.create-actor-title input,
+.create-actor-img input,
+.create-actor-debutyear input {
   border: none;
   padding: 10px;
   border-radius: 15px;
 }
 
-.create-drama-desc textarea {
+.create-actor-bio textarea {
   border: none;
   height: 50px;
   border-radius: 15px;
   padding: 10px;
 }
 
-.create-drama-submit {
+.create-actor-submit {
   display: flex;
   justify-content: center;
 }
 
-.create-drama-submit button {
+.create-actor-submit button {
   border: none;
   padding: 10px;
   width: 200px;
@@ -67,14 +63,14 @@
   font-family: "Kosugi Maru", sans-serif;
 }
 
-.create-drama-submit button:hover {
+.create-actor-submit button:hover {
   background-color: white;
   color: rgb(210, 157, 171);
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.create-drama-errors {
+.create-actor-errors {
   color: red;
   font-size: 15px;
   margin-left: 10px;

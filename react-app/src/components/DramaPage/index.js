@@ -17,7 +17,13 @@ function DramaPage() {
 
   return (
     <div className="full-drama-page">
-      <h1 className="drama-page-header">All Dramas</h1>
+      <div className="top-drama-page">
+        <div className="drama-page-genre">Genre</div>
+        <h1 className="drama-page-header">All Dramas</h1>
+        <NavLink className="drama-page-create" to="/dramas/create">
+          Post your Drama
+        </NavLink>
+      </div>
       <div className="each-drama-card">
         {dramasArr.map((drama) => (
           <NavLink className="drama-card-navlink" to={`/dramas/${drama.id}`}>

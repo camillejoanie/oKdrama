@@ -23,9 +23,11 @@ function CreateDramaForm({ reload }) {
     const errors = {};
     if (!dramaName) errors.dramaName = "Drama name is required";
     if (!releaseYear) errors.releaseYear = "Release Year is required";
+    if (releaseYear.length !== 4)
+      errors.releaseYear = "Release Year must be 4 integers long";
     if (!genre) errors.genre = "Genre is required";
     if (!image) errors.image = "Drama image is required";
-    if (!description) errors.image = "Description is required";
+    if (!description) errors.description = "Description is required";
 
     setErrors(errors);
 
@@ -66,7 +68,7 @@ function CreateDramaForm({ reload }) {
   return (
     <div className="entire-create-drama">
       <div className="create-background">
-        <div className="create-drama-header">Post your K-Drama!</div>
+        <h1 className="create-drama-header">Post your K-Drama!</h1>
         <div className="create-drama-form-container">
           <form
             className="create-drama-form"

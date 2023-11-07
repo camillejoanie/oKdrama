@@ -6,7 +6,9 @@ import LoginFormPage from "./components/LoginFormPage";
 import DramaPage from "./components/DramaPage";
 import ActorPage from "./components/ActorPage";
 import CreateDramaForm from "./components/CreateDrama";
+import CreateActorForm from "./components/CreateActor";
 import UpdateDrama from "./components/UpdateDrama";
+import UpdateActor from "./components/UpdateActor";
 import SingleDramaPage from "./components/SingleDramaPage";
 import SingleActorPage from "./components/SingleActorPage";
 import { authenticate } from "./store/session";
@@ -44,6 +46,12 @@ function App() {
             <SingleDramaPage />
           </Route>
           <Route path="/dramas" component={DramaPage} />
+          <Route exact path="/actors/:actorId/update">
+            <UpdateActor />
+          </Route>
+          <Route exact path="/actors/create">
+            <CreateActorForm />
+          </Route>
           <Route path="/actors/:actorId">
             <SingleActorPage />
           </Route>

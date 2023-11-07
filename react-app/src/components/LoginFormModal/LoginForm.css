@@ -93,6 +93,10 @@
   font-weight: bold;
 }
 
+.close-button:hover {
+  color: white;
+}
+
 .login-error {
   color: red;
 }

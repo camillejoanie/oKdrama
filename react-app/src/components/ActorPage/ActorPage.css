@@ -3,6 +3,31 @@
   color: rgb(210, 157, 171);
 }
 
+.top-actor-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 100px;
+}
+
+.actor-page-create {
+  text-decoration: none;
+  /* color: rgb(210, 157, 171); */
+  color: white;
+  font-size: 15px;
+  background-color: rgb(233, 207, 215);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.actor-page-create:hover {
+  color: rgb(210, 157, 171);
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  transform: scale(1.05);
+}
+
 .each-actor-card {
   display: grid;
   justify-content: center;
@@ -21,6 +46,7 @@
   padding: 20px;
   background-color: rgb(233, 207, 215);
   text-decoration: none;
+  height: 350px;
 }
 
 .actor-card-navlink:hover {

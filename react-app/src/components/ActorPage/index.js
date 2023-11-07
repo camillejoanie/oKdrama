@@ -16,7 +16,13 @@ function ActorPage() {
 
   return (
     <div className="full-actor-page">
-      <h1 className="actor-page-header">All Actors</h1>
+      <div className="top-actor-page">
+        <div className="holding-space">{"  "}</div>
+        <h1 className="actor-page-header">All Actors</h1>
+        <NavLink className="actor-page-create" to="/actors/create">
+          Post your Actor
+        </NavLink>
+      </div>
       <div className="each-actor-card">
         {actorsArr.map((actor) => (
           <NavLink className="actor-card-navlink" to={`/actors/${actor.id}`}>
