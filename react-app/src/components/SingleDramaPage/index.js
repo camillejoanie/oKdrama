@@ -23,7 +23,6 @@ function SingleDramaPage() {
   const [submitted, setSubmitted] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const dramaObj = useSelector((state) => state.dramas.singleDrama);
-  console.log("HUHUHUHUHUH", dramaObj.trailer);
   const dramaArr = Object.values(dramaObj);
 
   useEffect(() => {
@@ -50,6 +49,9 @@ function SingleDramaPage() {
             <div className="single-drama-rating">**Rating**</div>
             <h1 className="single-drama-title">{dramaObj.drama_name}</h1>
             <div className="single-drama-desc">{dramaObj.description}</div>
+            <div className="single-drama-releaseyear">
+              Released: {dramaObj.release_year}
+            </div>
             <div className="single-drama-genre">Genre: {dramaObj.genre}</div>
             <p>Sorry, no trailer!</p>
           </div>
