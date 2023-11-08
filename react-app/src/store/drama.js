@@ -4,6 +4,8 @@ const GET_SINGLE_DRAMA = "dramas/GET_SINGLE_DRAMA";
 const CREATE_DRAMA = "dramas/CREATE_DRAMA";
 const UPDATE_DRAMA = "dramas/UPDATE_DRAMA";
 const DELETE_DRAMA = "dramas/DELETE_DRAMA";
+const GET_DRAMA_ACTORS = "dramas/GET_DRAMA_ACTORS";
+const ADD_ACTOR_TO_DRAMA = "dramas/ADD_ACTOR_TO_DRAMA";
 
 //ACTION CREATORS
 const loadAllDramas = (dramas) => ({
@@ -29,6 +31,17 @@ const updateDrama = (drama) => ({
 const deleteDrama = (dramaId) => ({
   type: DELETE_DRAMA,
   dramaId,
+});
+
+const getDramaActors = (actors) => ({
+  type: GET_DRAMA_ACTORS,
+  actors,
+});
+
+const addActorToDrama = (dramaId, actorId) => ({
+  type: ADD_ACTOR_TO_DRAMA,
+  dramaId,
+  actorId,
 });
 
 //THUNKS
@@ -105,10 +118,36 @@ export const deleteDramaThunk = (dramaId) => async (dispatch) => {
   }
 };
 
+export const getDramaActorsThunk = (dramaId) => async (dispatch) => {
+  const response = await fetch(`/api/dramas/${dramaId}/get-actors`);
+
+  if (response.ok) {
+    const actors = await response.json();
+    dispatch(getDramaActors(actors));
+  }
+};
+
+export const addActorToDramaThunk = (payload) => async (dispatch) => {
+  const response = await fetch(`/api/dramas/${payload.drama_id}/add-actor`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (response.ok) {
+    const addedActor = await response.json();
+    dispatch(addActorToDrama(addedActor));
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+};
+
 //REDUCER
 const initialState = {
   allDramas: {},
   singleDrama: {},
+  dramaActors: {},
 };
 
 const dramasReducer = (state = initialState, action) => {
@@ -134,6 +173,17 @@ const dramasReducer = (state = initialState, action) => {
       newState = { ...state };
       delete newState.allDramas[action.dramaId];
       delete newState.singleDrama;
+      return newState;
+    case GET_DRAMA_ACTORS:
+      newState = { ...state };
+      newState.dramaActors = action.actors;
+      return newState;
+    case ADD_ACTOR_TO_DRAMA:
+      newState = { ...state };
+      const { dramaId, actorId } = action;
+      if (newState.allDramas[dramaId]) {
+        newState.allDramas[dramaId].actors.push(actorId);
+      }
       return newState;
     default:
       return state;
