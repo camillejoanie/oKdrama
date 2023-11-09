@@ -45,15 +45,21 @@ def create_review():
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        user_id = current_user.get_id()
+        user_id = form.data['user_id']
         drama_id = form.data['drama_id']
-        review_text = form.data['review']
+        review = form.data['review']
         hearts = form.data['hearts']
+
+        user = User.query.get(user_id)
+        drama = Drama.query.get(drama_id)
+
+        if not user or not drama:
+            return {'errors': 'Invalid user or drama ID'}, 400
 
         new_review = Review(
             user_id=user_id,
             drama_id=drama_id,
-            review=review_text,
+            review=review,
             hearts=hearts
         )
 

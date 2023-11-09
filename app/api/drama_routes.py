@@ -85,20 +85,18 @@ def delete_drama(id):
         return {'error': 'Drama does not exist'}, 404
     
 # GET ALL REVIEWS
+# @drama_routes.route('/<int:id>/reviews', methods=['GET'])
+# def get_all_reviews(id):
+#     reviews = Review.query.filter_by(drama_id=id).order_by(Review.created_at)
+#     if not reviews:
+#         message = "There are currently no reviews"
+#         return jsonify(message=message)
+#     else:
+#         return jsonify([review.to_dict() for review in reviews])
 @drama_routes.route('/<int:id>/reviews', methods=['GET'])
 def get_all_reviews(id):
-    reviews = Review.query.filter_by(drama_id=id).order_by(Review.created_at)
-    if not reviews:
-        message = "There are currently no reviews"
-        return jsonify(message=message)
-    else:
-        return jsonify([review.to_dict() for review in reviews])
-# @drama_routes.route('/<int:drama_id>/reviews', methods=['GET'])
-# def get_reviews(drama_id):
-#     reviews = Review.query.filter_by(drama_id=drama_id).all()
-#     review_list = [{'id': review.id, 'hearts': review.hearts, 'review': review.review} for review in reviews]
-#     return jsonify({'reviews': review_list})
-
+    reviews = Review.query.filter_by(drama_id=id).all()
+    return jsonify([review.to_dict() for review in reviews])
 
 #GET DRAMA ACTORS
 @drama_routes.route('/<int:id>/get-actors')

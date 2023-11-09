@@ -66,7 +66,7 @@ export const createReviewThunk = (review) => async (dispatch) => {
 
   if (response.ok) {
     const newReview = await response.json();
-    dispatch(createReview(newReview.drama_id));
+    dispatch(createReview(newReview));
     return newReview;
   } else {
     const errors = await response.json();
