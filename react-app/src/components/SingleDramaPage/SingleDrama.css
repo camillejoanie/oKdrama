@@ -4,11 +4,18 @@
 
 .single-drama-body {
   display: flex;
+  flex-direction: column;
   border: 3px solid rgb(210, 157, 171);
   border-radius: 15px;
   background-color: rgb(233, 207, 215);
   padding: 40px;
   color: rgb(210, 157, 171);
+  /* border-bottom: none; */
+}
+
+.single-drama-top {
+  display: flex;
+  height: 450px;
 }
 
 .single-drama-img {
@@ -34,4 +41,67 @@
 .single-drama-desc {
   font-size: 20px;
   margin-bottom: 20px;
+}
+
+.single-drama-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+}
+
+.toggle-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 35%;
+}
+
+.toggle-buttons button {
+  border: none;
+  width: 120px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 15px;
+  font-family: "Kosugi Maru", sans-serif;
+  color: rgb(210, 157, 171);
+}
+
+.toggle-buttons button:hover {
+  background-color: rgb(210, 157, 171);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s color 0.3s;
+  transform: scale(1.05);
+}
+
+.review-item {
+  background-color: rgb(240, 223, 228);
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.single-drama-create-review button {
+  border: none;
+  /* background-color: transparent; */
+  border-radius: 15px;
+  padding: 10px;
+  background-color: rgb(210, 157, 171);
+  color: white;
+  font-family: "Kosugi Maru", sans-serif;
+  font-size: 18px;
+  margin: 0px 10px;
+  margin-bottom: 15px;
+}
+
+.single-drama-create-review button:hover {
+  background-color: white;
+  color: rgb(210, 157, 171);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.single-drama-trailer {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
