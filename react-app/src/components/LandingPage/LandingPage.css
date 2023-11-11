@@ -1,0 +1,99 @@
+.entire-landing-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slideshow-container {
+  display: flex;
+  justify-content: center;
+}
+
+.landing-header {
+  color: rgb(210, 157, 171);
+  text-align: center;
+}
+
+.slideshow-navlink {
+  text-decoration: none;
+  color: rgb(210, 157, 171);
+}
+
+.slideshow-gif {
+  width: 700px;
+  border-radius: 25px;
+}
+
+.slideshow-number {
+  position: absolute;
+  color: white;
+  background-color: rgb(233, 207, 215);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  padding: 3px;
+  z-index: 1;
+  margin-left: 640px;
+  margin-top: 10px;
+}
+
+.slideshow-caption {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  padding: 15px;
+  background-color: rgb(233, 207, 215);
+  border-radius: 20px;
+}
+
+.slideshow-caption:hover {
+  background-color: rgb(210, 157, 171);
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
+.slideshow-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.landing-buttons {
+  width: 700px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px;
+}
+
+.landing-dramas,
+.landing-actors {
+  background-color: rgb(233, 207, 215);
+  padding: 15px;
+  border-radius: 15px;
+  color: rgb(210, 157, 171);
+  text-decoration: none;
+}
+
+.landing-dramas:hover,
+.landing-actors:hover {
+  color: rgb(233, 207, 215);
+  background-color: white;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
+.landing-dramas:hover img,
+.landing-actors:hover img {
+  transform: scale(1.05);
+}
+
+.landing-img {
+  width: 150px;
+}

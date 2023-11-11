@@ -69,6 +69,17 @@ def seed_dramas():
     )
     db.session.add(drama6)
 
+    drama7 = Drama(
+        user_id=1,
+        drama_name="Kill Me Heal Me",
+        drama_image="https://upload.wikimedia.org/wikipedia/en/8/8a/KillMeHealMe-Poster.jpg",
+        genre="Romantic Comedy",
+        release_year=2015,
+        trailer="https://www.youtube.com/watch?v=jkLlJk2hsoc&ab_channel=DaehanDramaTV",
+        description="Cha Do-hyun (Ji Sung) is a third-generation business heir who developed dissociative identity disorder (previously known as multiple personality disorder) in the aftermath of several life-threatening traumatic events. He tries to regain control over his life with the help of Oh Ri-jin (Hwang Jung-eum), a beautiful first-year psychiatric resident who helps him secretly. But Ri-jin's twin brother, Oh Ri-on (Park Seo-joon), is a writer who is determined to uncover the unscrupulous lives of the rich and starts following Do-hyun around."
+    )
+    db.session.add(drama7)
+
     db.session.commit()
 
 def undo_dramas():

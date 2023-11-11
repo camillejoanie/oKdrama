@@ -1,7 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from app.models import db, Drama, Review, DramaActor, Actor
+from app.models import db, Drama, Review, DramaActor, Actor, User
 from app.forms.drama_form import DramaForm
+from app.forms.review_form import ReviewForm
 from app.forms.drama_actor_form import DramaActorForm
 from .auth_routes import validation_errors_to_error_messages
 from .aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
@@ -85,18 +86,65 @@ def delete_drama(id):
         return {'error': 'Drama does not exist'}, 404
     
 # GET ALL REVIEWS
-# @drama_routes.route('/<int:id>/reviews', methods=['GET'])
-# def get_all_reviews(id):
-#     reviews = Review.query.filter_by(drama_id=id).order_by(Review.created_at)
-#     if not reviews:
-#         message = "There are currently no reviews"
-#         return jsonify(message=message)
-#     else:
-#         return jsonify([review.to_dict() for review in reviews])
 @drama_routes.route('/<int:id>/reviews', methods=['GET'])
 def get_all_reviews(id):
     reviews = Review.query.filter_by(drama_id=id).all()
     return jsonify([review.to_dict() for review in reviews])
+
+#CREATE A REVIEW
+# @drama_routes.route('/<int:id>/create_review', methods=['POST'])
+# @login_required
+# def create_review(id):
+#     form = ReviewForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         user_id = form.data['user_id']
+#         review_text = form.data['review_text']
+#         hearts = form.data['hearts']
+
+#         user = User.query.get(user_id)
+#         drama = Drama.query.get(id)
+
+#         if not user or not drama:
+#             return {'errors': 'Invalid user or drama ID'}, 400
+
+#         new_review = Review(
+#             user_id=user_id,
+#             drama_id=id,
+#             review_text=review_text,
+#             hearts=hearts
+#         )
+
+#         db.session.add(new_review)
+#         db.session.commit()
+#         return new_review.to_dict()
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+@drama_routes.route('/<int:id>/reviews', methods=['POST'])
+@login_required
+def create_review(id):
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    # Check if the drama exists
+    drama = Drama.query.get(id)
+    if not drama:
+        return {'errors': 'Drama not found'}, 404
+
+    if form.validate_on_submit():
+        new_review = Review(
+            user_id=current_user.id,
+            drama_id=id,
+            review=form.data['review'],
+            hearts=form.data['hearts']
+        )
+
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
 
 #GET DRAMA ACTORS
 @drama_routes.route('/<int:id>/get-actors')

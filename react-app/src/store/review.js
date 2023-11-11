@@ -1,3 +1,5 @@
+import { getSingleDramaThunk } from "./drama";
+
 //ACTION TYPE
 const GET_REVIEWS = "reviews/GET_REVIEWS";
 const GET_SINGLE_REVIEW = "reviews/GET_SINGLE_REVIEW";
@@ -57,16 +59,18 @@ export const getSingleReviewThunk = (reviewId) => async (dispatch) => {
   }
 };
 
-export const createReviewThunk = (review) => async (dispatch) => {
-  const response = await fetch(`/api/reviews/create_review`, {
+export const createReviewThunk = (dramaId, review) => async (dispatch) => {
+  const response = await fetch(`/api/dramas/${dramaId}/reviews`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(review),
   });
 
   if (response.ok) {
-    const newReview = await response.json();
-    dispatch(createReview(newReview));
+    const { review: newReview } = await response.json();
+
+    dispatch(loadAllReviews(dramaId));
+    dispatch(getSingleDramaThunk(dramaId));
     return newReview;
   } else {
     const errors = await response.json();

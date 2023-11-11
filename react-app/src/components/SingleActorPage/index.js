@@ -33,7 +33,7 @@ function SingleActorPage() {
       <div className="single-actor-body">
         <img className="single-actor-img" src={actorObj.actor_image} />
         <div className="single-actor-info">
-          <div className="single-actor-likes">*likes*</div>
+          {/* <div className="single-actor-likes">*likes*</div> */}
           <h1 className="single-actor-title">{actorObj.actor_name}</h1>
           <div className="single-actor-bio">{actorObj.bio}</div>
           <div className="single-actor-debut">

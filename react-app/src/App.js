@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
+import LandingPage from "./components/LandingPage";
 import DramaPage from "./components/DramaPage";
 import ActorPage from "./components/ActorPage";
 import CreateDramaForm from "./components/CreateDrama";
@@ -59,6 +60,7 @@ function App() {
             <SingleActorPage />
           </Route>
           <Route path="/actors" component={ActorPage} />
+          <Route path="/" component={LandingPage} />
           <Route>Page Not Found</Route>
         </Switch>
       )}

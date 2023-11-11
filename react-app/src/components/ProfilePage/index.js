@@ -132,7 +132,9 @@ function ProfilePage({ reload }) {
                   );
                 })
               ) : (
-                <p>No dramas yet! You should post one!</p>
+                <p className="profile-page-no-dramas">
+                  No dramas yet! You should post one! 😉
+                </p>
               )}
             </div>
           ) : currActor ? (
@@ -179,7 +181,9 @@ function ProfilePage({ reload }) {
                   );
                 })
               ) : (
-                <p>No actors yet! You should post one!</p>
+                <p className="profile-page-no-actors">
+                  No actors yet! You should post one! 😉
+                </p>
               )}
             </div>
           ) : null}
