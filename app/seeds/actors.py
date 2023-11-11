@@ -23,7 +23,7 @@ def seed_actors():
     actor3 = Actor(
         user_id=2,
         actor_name="Park Seo-Joon",
-        actor_image="https://asset-2.tstatic.net/style/foto/bank/images/aktor-korea-selatan-park-seo-joon.jpg",
+        actor_image="https://m.media-amazon.com/images/M/MV5BMmY2OGM1NjEtNGRiZi00NGY5LThjMzMtOTViYTMwOGM2YmE0XkEyXkFqcGdeQXVyNzY1ODU1OTk@._V1_FMjpg_UX1000_.jpg",
         debut_year=2011,
         bio="Park Seo Joon is a South Korean actor managed by Awesome Entertainment. He completed his military service in 2010 before making his debut in 2011 in Bang Yong Guk's music video 'I Remember.'"
     )

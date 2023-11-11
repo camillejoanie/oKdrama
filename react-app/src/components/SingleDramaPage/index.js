@@ -19,6 +19,15 @@ function extractVideoIdFromURL(url) {
   return null;
 }
 
+function calculateAverageRating(reviews) {
+  if (reviews.length === 0) return 0;
+
+  const totalRating = reviews.reduce((sum, review) => sum + review.hearts, 0);
+  const averageRating = totalRating / reviews.length;
+
+  return averageRating;
+}
+
 function SingleDramaPage() {
   const dispatch = useDispatch();
   const { dramaId } = useParams();
@@ -57,20 +66,68 @@ function SingleDramaPage() {
 
   const isOwner = owner === currUser;
 
+  const averageRating = calculateAverageRating(reviewArr);
+
   if (!dramaObj.trailer) {
     return (
       <div className="entire-single-drama">
         <div className="single-drama-body">
-          <img className="single-drama-img" src={dramaObj.drama_image} />
-          <div className="single-drama-info">
-            <div className="single-drama-rating">**Rating**</div>
-            <h1 className="single-drama-title">{dramaObj.drama_name}</h1>
-            <div className="single-drama-desc">{dramaObj.description}</div>
-            <div className="single-drama-releaseyear">
-              Released: {dramaObj.release_year}
+          <div className="single-drama-top">
+            <img className="single-drama-img" src={dramaObj.drama_image} />
+            <div className="single-drama-info">
+              <div className="single-drama-rating">
+                Rating:{" "}
+                {reviewArr.length === 0 ? "New" : averageRating.toFixed(1)}
+              </div>
+              <h1 className="single-drama-title">{dramaObj.drama_name}</h1>
+              <div className="single-drama-desc">{dramaObj.description}</div>
+              <div className="single-drama-releaseyear">
+                Released: {dramaObj.release_year}
+              </div>
+              <div className="single-drama-genre">Genre: {dramaObj.genre}</div>
+              <div className="single-drama-actors">
+                <h2>Actors:</h2>
+                <ul>
+                  {dramaActorsArr.map((actor) => (
+                    <li key={actor.id}>{actor.actor_name}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="single-drama-genre">Genre: {dramaObj.genre}</div>
-            <p>Sorry, no trailer!</p>
+          </div>
+          <div className="single-drama-buttons">
+            <div className="toggle-buttons">
+              <button onClick={() => setDisplayType("reviews")}>Reviews</button>
+              <button onClick={() => setDisplayType("trailer")}>Trailer</button>
+            </div>
+          </div>
+          <div className="single-drama-review-trailer">
+            {displayType === "reviews" && (
+              <div className="single-drama-reviews">
+                {/* {!isOwner && (
+                  <div className="single-drama-create-review">
+                    <OpenModalButton
+                      className="single-drama-create-button"
+                      buttonText="Write a Review"
+                      modalComponent={
+                        <CreateReviewModal
+                          dramaId={dramaArr.drama_id}
+                          submitted={() => setSubmitted(true)}
+                        />
+                      }
+                    />
+                  </div>
+                )} */}
+                <div className="single-drama-review-container">
+                  <DramaReviews />
+                </div>
+              </div>
+            )}
+            {displayType === "trailer" && (
+              <div className="single-drama-notrailer">
+                Sorry, No trailer available!
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -85,21 +142,24 @@ function SingleDramaPage() {
         <div className="single-drama-top">
           <img className="single-drama-img" src={dramaObj.drama_image} />
           <div className="single-drama-info">
-            <div className="single-drama-rating">**Rating**</div>
+            <div className="single-drama-rating">
+              Rating:{" "}
+              {reviewArr.length === 0 ? "New" : averageRating.toFixed(1)}
+            </div>
             <h1 className="single-drama-title">{dramaObj.drama_name}</h1>
             <div className="single-drama-desc">{dramaObj.description}</div>
             <div className="single-drama-releaseyear">
               Released: {dramaObj.release_year}
             </div>
             <div className="single-drama-genre">Genre: {dramaObj.genre}</div>
-            <div className="single-drama-actors">
+            {/* <div className="single-drama-actors">
               <h2>Actors:</h2>
               <ul>
                 {dramaActorsArr.map((actor) => (
                   <li key={actor.id}>{actor.actor_name}</li>
                 ))}
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="single-drama-buttons">
@@ -111,7 +171,7 @@ function SingleDramaPage() {
         <div className="single-drama-review-trailer">
           {displayType === "reviews" && (
             <div className="single-drama-reviews">
-              {!isOwner && (
+              {/* {!isOwner && (
                 <div className="single-drama-create-review">
                   <OpenModalButton
                     className="single-drama-create-button"
@@ -124,7 +184,7 @@ function SingleDramaPage() {
                     }
                   />
                 </div>
-              )}
+              )} */}
               <div className="single-drama-review-container">
                 <DramaReviews />
               </div>

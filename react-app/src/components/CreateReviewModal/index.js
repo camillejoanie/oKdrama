@@ -46,7 +46,7 @@ function CreateReviewModal(props) {
 
     formData.append("user_id", userId);
     formData.append("drama_id", dramaId);
-    formData.append("review", review);
+    formData.append("review_text", review);
     formData.append("hearts", hearts);
 
     if (Object.keys(errorsFound).length === 0) {

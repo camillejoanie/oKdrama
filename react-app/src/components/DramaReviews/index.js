@@ -43,7 +43,7 @@ function DramaReviews() {
                     <p>
                       {month}, {year}
                     </p>
-                    <p>{review.review}</p>
+                    <p>{review.review_text}</p>
                     <p>Hearts: {review.hearts}</p>
                   </div>
                 );
@@ -72,7 +72,7 @@ function DramaReviews() {
                     <p>
                       {month}, {year}
                     </p>
-                    <p>{review.review}</p>
+                    <p>{review.review_text}</p>
                     <p>Hearts: {review.hearts}</p>
                   </div>
                 );

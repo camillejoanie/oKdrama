@@ -8,6 +8,12 @@
   padding-bottom: 30px;
 }
 
+.create-background {
+  background-color: rgba(233, 207, 215, 0.723);
+  padding: 20px 50px;
+  border-radius: 20px;
+}
+
 .create-drama-header {
   text-align: center;
   color: rgb(210, 157, 171);
