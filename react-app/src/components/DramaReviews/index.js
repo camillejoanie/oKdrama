@@ -20,10 +20,11 @@ function DramaReviews() {
   }, [dispatch, dramaId]);
 
   const isOwner = owner === currUser;
+  const isLoggedIn = !!userId;
 
   return (
     <div className="entire-review-list">
-      {userId && isOwner && (
+      {isOwner && (
         <>
           {reviewArr.length === 0 && (
             <div className="no-review-text">Sorry, no reviews yet. 😔</div>
@@ -52,10 +53,14 @@ function DramaReviews() {
           )}
         </>
       )}
-      {userId && currUser && !isOwner && (
+      {!isOwner && (
         <>
           {reviewArr.length === 0 && (
-            <div className="no-review-text">Be the first to comment! ☺</div>
+            <div className="no-review-text">
+              {isLoggedIn
+                ? "Be the first to comment! ☺"
+                : "Log in to be the first to review!"}
+            </div>
           )}
           {reviewArr.length > 0 && (
             <div className="drama-reviews-container">

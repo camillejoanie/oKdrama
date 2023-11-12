@@ -38,7 +38,7 @@ function DeleteActorModal({ actorId, submitted }) {
           </button>
           <h2 className="delete-actor-header">Confirm Delete</h2>
           <div className="delete-actor-rusure">
-            {`Are you sure you want to delete ${actorName}?`}
+            {`Are you sure you want to delete this actor?`}
           </div>
           <div className="delete-actor-buttons">
             <button className="yes-delete-actor" onClick={confirmDelete}>

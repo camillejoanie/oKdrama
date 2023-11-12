@@ -11,7 +11,7 @@ class DramaForm(FlaskForm):
     drama_image = FileField('drama_image', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
 
     def validate_release_year(form, field):
-        release_year = str(field.data)  # Convert the integer to a string
+        release_year = str(field.data)
         if not release_year.isdigit() or len(release_year) != 4:
             raise ValidationError("Release year must be a 4-digit integer.")
 
