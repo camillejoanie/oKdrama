@@ -85,14 +85,14 @@ function SingleDramaPage() {
                 Released: {dramaObj.release_year}
               </div>
               <div className="single-drama-genre">Genre: {dramaObj.genre}</div>
-              <div className="single-drama-actors">
+              {/* <div className="single-drama-actors">
                 <h2>Actors:</h2>
                 <ul>
                   {dramaActorsArr.map((actor) => (
                     <li key={actor.id}>{actor.actor_name}</li>
                   ))}
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="single-drama-buttons">

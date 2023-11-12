@@ -94,7 +94,8 @@
 
 .drama-card-title {
   color: white;
-  width: 150px;
+  max-width: 150px;
+  word-wrap: break-word;
 }
 
 .drama-card-rating {

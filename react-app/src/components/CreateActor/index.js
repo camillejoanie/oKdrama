@@ -21,6 +21,8 @@ function CreateActorForm({ reload }) {
     const errors = {};
 
     if (!actorName) errors.actorName = "Actor name is required";
+    if (actorName.length > 40)
+      errors.actorName = "Actor name cannot be more than 40 characters long";
     if (!image) errors.image = "Actor image is required";
     if (!debutYear) errors.debutYear = "Debut year is required";
     if (debutYear.length !== 4)

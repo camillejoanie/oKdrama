@@ -47,6 +47,7 @@
   background-color: rgb(233, 207, 215);
   text-decoration: none;
   height: 350px;
+  word-wrap: break-word;
 }
 
 .actor-card-navlink:hover {
@@ -70,4 +71,6 @@
 
 .actor-card-name {
   color: white;
+  width: 200px;
+  word-wrap: break-word;
 }

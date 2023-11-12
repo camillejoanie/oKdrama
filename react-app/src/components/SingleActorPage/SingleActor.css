@@ -9,6 +9,7 @@
   background-color: rgb(233, 207, 215);
   padding: 40px;
   color: rgb(210, 157, 171);
+  height: 450px;
 }
 
 .single-actor-img {
@@ -25,13 +26,16 @@
   padding: 20px;
   border-radius: 10px;
   width: 100%;
+  overflow-y: auto;
 }
 
 .single-actor-title {
   font-size: 40px;
+  word-wrap: break-word;
 }
 
 .single-actor-bio {
   font-size: 20px;
   margin-bottom: 20px;
+  word-wrap: break-word;
 }
