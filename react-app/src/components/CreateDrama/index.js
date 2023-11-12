@@ -22,6 +22,8 @@ function CreateDramaForm({ reload }) {
   function errorsChecked(dramaName, releaseYear, genre, image, description) {
     const errors = {};
     if (!dramaName) errors.dramaName = "Drama name is required";
+    if (dramaName.length > 50)
+      errors.dramaName = "Drama name cannot exceed 50 characters";
     if (!releaseYear) errors.releaseYear = "Release Year is required";
     if (releaseYear.length !== 4)
       errors.releaseYear = "Release Year must be 4 integers long";
@@ -122,12 +124,16 @@ function CreateDramaForm({ reload }) {
               <label className="create-drama-label">
                 What is the genre of the K-Drama?
               </label>
-              <input
-                type="text"
-                value={genre}
-                onChange={(e) => setGenre(e.target.value)}
-                placeholder="Genre"
-              />
+              <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+                <option value="">Select Genre</option>
+                <option value="Crime">Crime</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Romantic Comedy">Romantic Comedy</option>
+                <option value="Coming-of-age">Coming-of-age</option>
+                <option value="Workplace Drama">Workplace Drama</option>
+                <option value="Family Drama">Family Drama</option>
+                <option value="Historical">Historical</option>
+              </select>
               {errors.genre && (
                 <p className="create-drama-errors">{errors.genre}</p>
               )}

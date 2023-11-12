@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, DateField, SelectField, TextAreaField
+from wtforms import StringField, IntegerField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Length, ValidationError
 
 from flask_wtf.file import FileRequired, FileAllowed, FileField
@@ -16,6 +16,18 @@ class DramaForm(FlaskForm):
             raise ValidationError("Release year must be a 4-digit integer.")
 
     release_year = IntegerField('release_year', validators=[DataRequired(message="This field is required and must be only 4 integers."), validate_release_year])
-    genre = StringField('genre', validators=[DataRequired()])
+
+    genre_choices = [
+        ('Crime', 'Crime'),
+        ('Fantasy', 'Fantasy'),
+        ('Romantic Comedy', 'Romantic Comedy'),
+        ('Coming-of-age', 'Coming-of-age'),
+        ('Workplace Drama', 'Workplace Drama'),
+        ('Family Drama', 'Family Drama'),
+        ('Historical', 'Historical')
+    ]
+
+    genre = SelectField('genre', choices=genre_choices, validators=[DataRequired()])
     trailer = StringField('trailer')
     description = TextAreaField('description', validators=[DataRequired()])
+

@@ -37,11 +37,13 @@
 
 .single-drama-title {
   font-size: 40px;
+  word-wrap: break-word;
 }
 
 .single-drama-desc {
   font-size: 20px;
   margin-bottom: 20px;
+  word-wrap: break-word;
 }
 
 .single-drama-buttons {
