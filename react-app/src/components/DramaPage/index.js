@@ -24,6 +24,7 @@ function DramaPage() {
   const dispatch = useDispatch();
   const allDramasObj = useSelector((state) => state.dramas.allDramas);
   const reviewObj = useSelector((state) => state.reviews.allReviews);
+  const sessionUser = useSelector((state) => state.session.user);
   const dramasArr = Object.values(allDramasObj);
   const reviewArr = Object.values(reviewObj);
 
@@ -41,9 +42,13 @@ function DramaPage() {
       <div className="top-drama-page">
         <div className="drama-page-genre">Genre</div>
         <h1 className="drama-page-header">All Dramas</h1>
-        <NavLink className="drama-page-create" to="/dramas/create">
-          Post your Drama
-        </NavLink>
+        {sessionUser ? (
+          <NavLink className="drama-page-create" to="/dramas/create">
+            Post your Drama
+          </NavLink>
+        ) : (
+          <div className="drama-page-no-create"></div>
+        )}
       </div>
       <div className="each-drama-card">
         {dramasArr.map((drama) => (

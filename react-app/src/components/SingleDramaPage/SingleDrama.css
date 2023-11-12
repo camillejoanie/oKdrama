@@ -46,6 +46,10 @@
   word-wrap: break-word;
 }
 
+.single-drama-genre {
+  margin-top: 10px;
+}
+
 .single-drama-buttons {
   display: flex;
   justify-content: center;
