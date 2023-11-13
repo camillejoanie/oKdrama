@@ -121,12 +121,16 @@ function UpdateDrama({ reload }) {
               <label className="update-drama-label">
                 What is the genre of the K-Drama?
               </label>
-              <input
-                type="text"
-                value={genre}
-                onChange={(e) => setGenre(e.target.value)}
-                placeholder="Genre"
-              />
+              <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+                <option value="">Select Genre</option>
+                <option value="Crime">Crime</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Romantic Comedy">Romantic Comedy</option>
+                <option value="Coming-of-age">Coming-of-age</option>
+                <option value="Workplace Drama">Workplace Drama</option>
+                <option value="Family Drama">Family Drama</option>
+                <option value="Historical">Historical</option>
+              </select>
               {hasSubmitted && errors.genre && (
                 <p className="update-drama-errors">{errors.genre}</p>
               )}

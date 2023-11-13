@@ -75,3 +75,16 @@
   font-size: 15px;
   margin-left: 10px;
 }
+
+.update-drama-genre select {
+  padding: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  color: gray;
+}
+
+.update-drama-genre select:hover {
+  color: rgb(210, 157, 171);
+  cursor: pointer;
+}

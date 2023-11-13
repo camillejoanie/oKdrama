@@ -58,7 +58,6 @@ function ProfilePage({ reload }) {
   const userActorsArr = user
     ? actorsArr.filter((actor) => actor.user_id === user.id)
     : [];
-  console.log("AHHHHHHH", userActorsArr);
 
   return (
     <div className="entire-profile-page">
