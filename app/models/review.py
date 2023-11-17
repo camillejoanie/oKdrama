@@ -13,7 +13,8 @@ class Review(db.Model):
     drama_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('dramas.id')), nullable=False)
     hearts = db.Column(db.Integer, nullable=False)
     review_text = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     user = db.relationship("User", back_populates="review")
     drama= db.relationship("Drama", back_populates="review")
@@ -26,4 +27,5 @@ class Review(db.Model):
             'hearts': self.hearts,
             'review_text': self.review_text,
             'created_at': self.created_at,
+            'updated_at': self.updated_at,
         }
