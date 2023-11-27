@@ -37,6 +37,7 @@ export const getReviewsThunk = (dramaId) => async (dispatch) => {
 
   if (response.ok) {
     const reviews = await response.json();
+    console.log("AHAHAAHAHAHHAAHHAHHAHAHA", reviews);
     dispatch(loadAllReviews(reviews));
     return reviews;
     // } else if (!response.ok && response.message) {
@@ -118,7 +119,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
 //REDUCER
 const initialState = {
   allReviews: {},
-  singleReview: {},
+  singleReview: null,
 };
 
 const reviewsReducer = (state = initialState, action) => {

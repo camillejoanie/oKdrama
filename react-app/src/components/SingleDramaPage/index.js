@@ -104,7 +104,7 @@ function SingleDramaPage() {
           <div className="single-drama-review-trailer">
             {displayType === "reviews" && (
               <div className="single-drama-reviews">
-                {/* {!isOwner && (
+                {!isOwner && (
                   <div className="single-drama-create-review">
                     <OpenModalButton
                       className="single-drama-create-button"
@@ -117,7 +117,7 @@ function SingleDramaPage() {
                       }
                     />
                   </div>
-                )} */}
+                )}
                 <div className="single-drama-review-container">
                   <DramaReviews />
                 </div>
@@ -171,7 +171,7 @@ function SingleDramaPage() {
         <div className="single-drama-review-trailer">
           {displayType === "reviews" && (
             <div className="single-drama-reviews">
-              {/* {!isOwner && (
+              {!isOwner && (
                 <div className="single-drama-create-review">
                   <OpenModalButton
                     className="single-drama-create-button"
@@ -184,7 +184,7 @@ function SingleDramaPage() {
                     }
                   />
                 </div>
-              )} */}
+              )}
               <div className="single-drama-review-container">
                 <DramaReviews />
               </div>
