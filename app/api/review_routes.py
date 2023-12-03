@@ -38,36 +38,45 @@ def get_single_review(id):
     else:
         return {"error": "Review not found"}, 404
     
-# #CREATE A REVIEW
-@review_routes.route('/<int:drama_id>', methods=['POST'])
+# CREATE A REVIEW
+@review_routes.route('/<int:dramaId>/reviews', methods=['POST'])
 @login_required
-def create_review(drama_id):
+def create_review(dramaId):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # user_id = form.data['user_id']
-        # drama_id = form.data['drama_id']
-        # review = form.data['review']
-        # hearts = form.data['hearts']
-
-        # user = User.query.get(user_id)
-        # drama = Drama.query.get(drama_id)
-
-        # if not user or not drama:
-        #     return {'errors': 'Invalid user or drama ID'}, 400
-
         new_review = Review(
             user_id=current_user.id,
-            drama_id=drama_id,
+            drama_id=dramaId,
             review=form.data['review'],
             hearts=form.data['hearts']
         )
 
         db.session.add(new_review)
         db.session.commit()
-        return new_review.to_dict()
+        return new_review.to_dict(), 201
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# @review_routes.route('/<int:dramaId>/reviews', methods=['POST'])
+# @login_required
+# def create_review(dramaId):
+#     form = ReviewForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         new_review = Review(
+#             user_id=current_user.id,
+#             drama_id=dramaId,
+#             review=form.data['review'],
+#             hearts=form.data['hearts']
+#         )
+
+#         db.session.add(new_review)
+#         db.session.commit()
+#         return new_review.to_dict()
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
     
 #UPDATE REVIEW
 @review_routes.route('/<int:id>', methods=['PUT'])

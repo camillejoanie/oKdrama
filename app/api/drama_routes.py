@@ -92,45 +92,11 @@ def get_all_reviews(id):
     return jsonify([review.to_dict() for review in reviews])
 
 #CREATE A REVIEW
-# @drama_routes.route('/<int:id>/create_review', methods=['POST'])
-# @login_required
-# def create_review(id):
-#     form = ReviewForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         user_id = form.data['user_id']
-#         review_text = form.data['review_text']
-#         hearts = form.data['hearts']
-
-#         user = User.query.get(user_id)
-#         drama = Drama.query.get(id)
-
-#         if not user or not drama:
-#             return {'errors': 'Invalid user or drama ID'}, 400
-
-#         new_review = Review(
-#             user_id=user_id,
-#             drama_id=id,
-#             review_text=review_text,
-#             hearts=hearts
-#         )
-
-#         db.session.add(new_review)
-#         db.session.commit()
-#         return new_review.to_dict()
-#     else:
-#         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 @drama_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
 def create_review(id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
-    # Check if the drama exists
-    drama = Drama.query.get(id)
-    if not drama:
-        return {'errors': 'Drama not found'}, 404
-
     if form.validate_on_submit():
         new_review = Review(
             user_id=current_user.id,
@@ -141,7 +107,7 @@ def create_review(id):
 
         db.session.add(new_review)
         db.session.commit()
-        return new_review.to_dict()
+        return new_review.to_dict(), 201
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
