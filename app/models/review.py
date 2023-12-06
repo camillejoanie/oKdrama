@@ -9,11 +9,11 @@ class Review(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    drama_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('dramas.id')), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    drama_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('dramas.id')))
     hearts = db.Column(db.Integer, nullable=False)
     review_text = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    created_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
     user = db.relationship("User", back_populates="review")
     drama= db.relationship("Drama", back_populates="review")

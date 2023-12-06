@@ -1,5 +1,3 @@
-import { getSingleDramaThunk } from "./drama";
-
 //ACTION TYPE
 const GET_REVIEWS = "reviews/GET_REVIEWS";
 const GET_SINGLE_REVIEW = "reviews/GET_SINGLE_REVIEW";
@@ -35,14 +33,12 @@ const deleteReview = (reviewId) => ({
 
 //THUNKS
 export const getReviewsThunk = (dramaId) => async (dispatch) => {
-  const response = await fetch(`/api/dramas/${dramaId}/reviews`);
+  const response = await fetch(`/api/dramas/${dramaId}`);
 
-  const reviews = await response.json();
   if (response.ok) {
+    const reviews = await response.json();
     dispatch(loadAllReviews(reviews));
     return reviews;
-  } else if (!response.ok && response.message) {
-    dispatch(loadAllReviews({ Reviews: [] }));
   }
 };
 
@@ -59,26 +55,20 @@ export const getSingleReviewThunk = (reviewId) => async (dispatch) => {
   }
 };
 
-export const createReviewThunk = (dramaId, formData) => async (dispatch) => {
-  try {
-    const response = await fetch(`/api/dramas/${dramaId}/reviews`, {
-      method: "POST",
-      body: formData,
-    });
+export const createReviewThunk = (review, dramaId) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${dramaId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(review),
+  });
 
-    if (response.ok) {
-      const { review: newReview } = await response.json();
-
-      dispatch(createReview(newReview));
-      dispatch(loadAllReviews(dramaId));
-      dispatch(getSingleDramaThunk(dramaId));
-      return newReview;
-    } else {
-      const errors = await response.json();
-      return errors;
-    }
-  } catch (error) {
-    console.error("Error in createReviewThunk:", error);
+  if (response.ok) {
+    const newReview = await response.json();
+    dispatch(createReview(newReview));
+    return newReview;
+  } else {
+    const errors = await response.json();
+    return errors;
   }
 };
 
@@ -91,7 +81,7 @@ export const updateReviewThunk = (review) => async (dispatch) => {
 
   if (response.ok) {
     const updatedReview = await response.json();
-    dispatch(updateReview(updatedReview.drama_id));
+    dispatch(updateReview(updatedReview));
     return updatedReview;
   } else {
     const errors = await response.json();
@@ -119,29 +109,40 @@ const initialState = {
 };
 
 const reviewsReducer = (state = initialState, action) => {
-  let newState = {};
+  let newState;
   switch (action.type) {
     case GET_REVIEWS:
-      newState = { ...state };
-      newState.allReviews = action.reviews;
-      return newState;
+      let allReviews = {};
+      if (Array.isArray(action.reviews)) {
+        for (const review of action.reviews) {
+          allReviews[review.id] = review;
+        }
+      } else if (typeof action.reviews === "object") {
+        allReviews = action.reviews;
+      }
+      return { ...state, allReviews: allReviews };
     case GET_SINGLE_REVIEW:
       newState = { ...state };
       newState.singleReview = action.review;
       return newState;
     case CREATE_REVIEW:
-      newState = { ...state };
+      newState = {
+        ...state,
+        allReviews: { ...state.allReviews },
+      };
       newState.allReviews[action.review.id] = action.review;
       return newState;
     case UPDATE_REVIEW:
       newState = { ...state };
-      newState.singleReview = action.review;
+      newState.allReviews = action.review;
       return newState;
     case DELETE_REVIEW:
-      newState = { ...state };
-      delete newState.allReviews[action.reviewId];
-      delete newState.singleReview;
-      return newState;
+      const newReviews = { ...state.allReviews };
+      delete newReviews[action.reviewId];
+      return {
+        ...state,
+        allReviews: { ...newReviews },
+      };
     default:
       return state;
   }

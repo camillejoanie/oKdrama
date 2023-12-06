@@ -85,31 +85,31 @@ def delete_drama(id):
     else:
         return {'error': 'Drama does not exist'}, 404
     
-# GET ALL REVIEWS
-@drama_routes.route('/<int:id>/reviews', methods=['GET'])
-def get_all_reviews(id):
-    reviews = Review.query.filter_by(drama_id=id).all()
-    return jsonify([review.to_dict() for review in reviews])
+# # GET ALL REVIEWS
+# @drama_routes.route('/<int:id>/reviews', methods=['GET'])
+# def get_all_reviews(id):
+#     reviews = Review.query.filter_by(drama_id=id).all()
+#     return jsonify([review.to_dict() for review in reviews])
 
-#CREATE A REVIEW
-@drama_routes.route('/<int:id>/reviews', methods=['POST'])
-@login_required
-def create_review(id):
-    form = ReviewForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        new_review = Review(
-            user_id=current_user.id,
-            drama_id=id,
-            review=form.data['review'],
-            hearts=form.data['hearts']
-        )
+# #CREATE A REVIEW
+# @drama_routes.route('/<int:id>/reviews', methods=['POST'])
+# @login_required
+# def create_review(id):
+#     form = ReviewForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         new_review = Review(
+#             user_id=current_user.id,
+#             drama_id=id,
+#             review=form.data['review'],
+#             hearts=form.data['hearts']
+#         )
 
-        db.session.add(new_review)
-        db.session.commit()
-        return new_review.to_dict(), 201
-    else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+#         db.session.add(new_review)
+#         db.session.commit()
+#         return new_review.to_dict(), 201
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 #GET DRAMA ACTORS
