@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
+import LoginFormModal from "./components/LoginFormModal";
 import LandingPage from "./components/LandingPage";
 import DramaPage from "./components/DramaPage";
 import ActorPage from "./components/ActorPage";
@@ -32,7 +32,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/login">
-            <LoginFormPage />
+            <LoginFormModal />
           </Route>
           <Route path="/signup">
             <SignupFormPage />

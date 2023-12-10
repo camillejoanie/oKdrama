@@ -42,8 +42,8 @@ function LoginFormModal() {
       <div className="login-inputs">
         <form onSubmit={handleSubmit}>
           <ul className="login-error">
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+            {errors.map((error) => (
+              <div key={error}>{error.split(":")[1].trim()}</div>
             ))}
           </ul>
           <div className="login-email">
