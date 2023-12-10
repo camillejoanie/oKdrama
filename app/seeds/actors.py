@@ -5,7 +5,7 @@ def seed_actors():
     actor1 = Actor(
         user_id=1,
         actor_name="Park Hyung-Sik",
-        actor_image="https://photos.hancinema.net/photos/photo1585367.jpg",
+        actor_image="https://i.pinimg.com/originals/ce/7f/2c/ce7f2c49851ed8bcd2422e38fa329882.jpg",
         debut_year=2010,
         bio="Park Hyung-sik is a South Korean singer and actor born on November 16, 1991. He is known for being a member of the South Korean boy group ZE:A. His acting projects include the television dramas Strong Woman Do Bong-soon and Suits."
     )
@@ -32,7 +32,7 @@ def seed_actors():
     actor4 = Actor(
         user_id=2,
         actor_name="Park Bo-Gum",
-        actor_image="https://photos.hancinema.net/photos/photo1679120.jpg",
+        actor_image="https://64.media.tumblr.com/32fb626ca2af90feeb597e43827030b1/tumblr_pk2uhiEKjZ1untowto1_1280.jpg",
         debut_year=2011,
         bio="Park Bo Gum is a South Korean actor, singer, and musician currently with THEBLACKLABEL. He had previously been with Blossom Entertainment for ten years."
     )
@@ -65,21 +65,22 @@ def seed_actors():
     )
     db.session.add(actor7)
 
-    actor8 = Actor(
-        user_id=2,
-        actor_name="Ahn Hyo-seop",
-        actor_image="https://img1.kpopmap.com/2020/01/A-photo-of-Ahn-HyoSeop-in-AAA-2019-2.jpg",
-        debut_year=2015,
-        bio="Ahn Hyo-seop is a South Korean actor, singer, and songwriter. He is known for his roles in the dramas 'Abyss' and 'Thirty But Seventeen.'"
-    )
-    db.session.add(actor8)
 
-    actor9 = Actor(
+    actor8 = Actor(
         user_id=2,
         actor_name="Joo Sang-wook",
         actor_image="https://koreandrama435792045.files.wordpress.com/2020/03/joo-sang-wook3.png",
         debut_year=1999,
         bio="Joo Sang-wook is a South Korean actor. He has appeared in numerous television dramas and films, showcasing his talent and versatility as an actor."
+    )
+    db.session.add(actor8)
+
+    actor9 = Actor(
+        user_id=2,
+        actor_name="Ahn Hyo-seop",
+        actor_image="https://img1.kpopmap.com/2020/01/A-photo-of-Ahn-HyoSeop-in-AAA-2019-2.jpg",
+        debut_year=2015,
+        bio="Ahn Hyo-seop is a South Korean actor, singer, and songwriter. He is known for his roles in the dramas 'Abyss' and 'Thirty But Seventeen.'"
     )
     db.session.add(actor9)
 
