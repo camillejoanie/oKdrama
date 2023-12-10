@@ -38,6 +38,36 @@ def seed_drama_actors():
     )
     db.session.add(drama_actor6)
 
+    drama_actor7 = DramaActor(
+        drama_id=7,
+        actor_id=6
+    )
+    db.session.add(drama_actor7)
+
+    drama_actor8 = DramaActor(
+        drama_id=8,
+        actor_id=7
+    )
+    db.session.add(drama_actor8)
+
+    drama_actor9 = DramaActor(
+        drama_id=9,
+        actor_id=8
+    )
+    db.session.add(drama_actor9)
+
+    drama_actor10 = DramaActor(
+        drama_id=10,
+        actor_id=9
+    )
+    db.session.add(drama_actor10)
+
+    drama_actor11 = DramaActor(
+        drama_id=17,
+        actor_id=11
+    )
+    db.session.add(drama_actor11)
+
     db.session.commit()
 
 def undo_drama_actors():
