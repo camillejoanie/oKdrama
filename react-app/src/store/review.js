@@ -59,22 +59,26 @@ export const getSingleReviewThunk = (reviewId) => async (dispatch) => {
   }
 };
 
-export const createReviewThunk = (dramaId, review) => async (dispatch) => {
-  const response = await fetch(`/api/dramas/${dramaId}/reviews`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(review),
-  });
+export const createReviewThunk = (dramaId, formData) => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/dramas/${dramaId}/reviews`, {
+      method: "POST",
+      body: formData,
+    });
 
-  if (response.ok) {
-    const { review: newReview } = await response.json();
+    if (response.ok) {
+      const { review: newReview } = await response.json();
 
-    dispatch(loadAllReviews(dramaId));
-    dispatch(getSingleDramaThunk(dramaId));
-    return newReview;
-  } else {
-    const errors = await response.json();
-    return errors;
+      dispatch(createReview(newReview));
+      dispatch(loadAllReviews(dramaId));
+      dispatch(getSingleDramaThunk(dramaId));
+      return newReview;
+    } else {
+      const errors = await response.json();
+      return errors;
+    }
+  } catch (error) {
+    console.error("Error in createReviewThunk:", error);
   }
 };
 
