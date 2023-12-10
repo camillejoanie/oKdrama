@@ -22,6 +22,12 @@ function DramaReviews() {
     dispatch(getReviewsThunk(dramaId)).then(() => setIsLoaded(true));
   }, [dispatch, dramaId]);
 
+  const sortedReviews = Array.isArray(reviewArr)
+    ? [...reviewArr].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      )
+    : [];
+
   const isOwner = owner === currUser;
   const isLoggedIn = !!userId;
 
@@ -48,12 +54,30 @@ function DramaReviews() {
 
                   return (
                     <div key={review.id} className="review-item">
-                      {/* <p>{review.user_id.first_name}</p> */}
+                      <p className="review-user">{review?.User?.first_name}</p>
                       <p>
                         {month}, {year}
                       </p>
-                      <p>{review.review_text}</p>
-                      <p>Hearts: {review.hearts}</p>
+                      <p className="review-text">{review.review_text}</p>
+                      <div className="review-hearts">
+                        Hearts: {review.hearts}
+                      </div>
+                      {/* {userId && (
+                        <div className="review-update-button">
+                          {review.user_id === userId.id && (
+                            <OpenModalButton
+                              buttonText="Update"
+                              modalComponent={
+                                <UpdateReview
+                                  review={review}
+                                  userId={dramaId.id}
+                                  dramaId={dramaId.id}
+                                />
+                              }
+                            />
+                          )}
+                        </div>
+                      )} */}
                     </div>
                   );
                 })}
