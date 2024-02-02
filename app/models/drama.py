@@ -17,6 +17,7 @@ class Drama(db.Model):
 
     user = db.relationship("User", back_populates="drama")
     drama_actor = db.relationship("DramaActor", back_populates="drama")
+    drama_actress = db.relationship("DramaActress", back_populates="drama")
     like = db.relationship("Like", back_populates="drama")
     review = db.relationship("Review", back_populates="drama")
 
