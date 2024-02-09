@@ -9,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.drama_routes import drama_routes
 from .api.actor_routes import actor_routes
+from .api.actress_routes import actress_routes
 from .api.review_routes import review_routes
 from .seeds import seed_commands
 from .config import Config
@@ -33,6 +34,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(drama_routes, url_prefix='/api/dramas')
 app.register_blueprint(actor_routes, url_prefix='/api/actors')
+app.register_blueprint(actress_routes, url_prefix='/api/actresses')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 db.init_app(app)
 Migrate(app, db)
