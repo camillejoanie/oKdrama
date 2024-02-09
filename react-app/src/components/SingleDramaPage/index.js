@@ -4,8 +4,8 @@ import { useParams, Redirect, NavLink } from "react-router-dom";
 import { getSingleDramaThunk, getDramaActorsThunk } from "../../store/drama";
 import DramaReviews from "../DramaReviews";
 import CreateReviewModal from "../CreateReviewModal";
-import "./SingleDrama.css";
 import OpenModalButton from "../OpenModalButton";
+import "./SingleDrama.css";
 
 function extractVideoIdFromURL(url) {
   const regex = /(?:https:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/;
@@ -33,13 +33,15 @@ function SingleDramaPage() {
   const { dramaId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [displayType, setDisplayType] = useState("reviews"); // "reviews" or "trailer"
+  const [displayType, setDisplayType] = useState("reviews");
 
   const sessionUser = useSelector((state) => state.session.user);
   const dramaObj = useSelector((state) => state.dramas.singleDrama);
   const reviewObj = useSelector((state) => state.reviews.allReviews);
   const dramaActorsObj = useSelector((state) => state.dramas.dramaActors);
-  const owner = useSelector((state) => state.dramas.singleDrama.user_id);
+  const owner = useSelector(
+    (state) => state.dramas.singleDrama?.user_id || null
+  );
   const dramaArr = Object.values(dramaObj);
   const reviewArr = Object.values(reviewObj);
   const dramaActorsArr = Object.values(dramaActorsObj);
@@ -68,6 +70,10 @@ function SingleDramaPage() {
 
   const averageRating = calculateAverageRating(reviewArr);
 
+  const featureComingSoon = () => {
+    alert("Feature coming soon!");
+  };
+
   if (!dramaObj.trailer) {
     return (
       <div className="entire-single-drama">
@@ -85,14 +91,14 @@ function SingleDramaPage() {
                 Released: {dramaObj.release_year}
               </div>
               <div className="single-drama-genre">Genre: {dramaObj.genre}</div>
-              {/* <div className="single-drama-actors">
+              <div className="single-drama-actors">
                 <h2>Actors:</h2>
                 <ul>
-                  {dramaActorsArr.map((actor) => (
-                    <li key={actor.id}>{actor.actor_name}</li>
+                  {dramaActorsArr.map((dramaActor) => (
+                    <li key={dramaActor.id}>{dramaActor.actor.actor_name}</li>
                   ))}
                 </ul>
-              </div> */}
+              </div>
             </div>
           </div>
           <div className="single-drama-buttons">
@@ -106,7 +112,7 @@ function SingleDramaPage() {
               <div className="single-drama-reviews">
                 {!isOwner && (
                   <div className="single-drama-create-review">
-                    <OpenModalButton
+                    {/* <OpenModalButton
                       className="single-drama-create-button"
                       buttonText="Write a Review"
                       modalComponent={
@@ -115,7 +121,13 @@ function SingleDramaPage() {
                           submitted={() => setSubmitted(true)}
                         />
                       }
-                    />
+                    /> */}
+                    <button
+                      className="single-drama-create-button"
+                      onClick={featureComingSoon}
+                    >
+                      Write a Review
+                    </button>
                   </div>
                 )}
                 <div className="single-drama-review-container">
@@ -152,14 +164,14 @@ function SingleDramaPage() {
               Released: {dramaObj.release_year}
             </div>
             <div className="single-drama-genre">Genre: {dramaObj.genre}</div>
-            {/* <div className="single-drama-actors">
+            <div className="single-drama-actors">
               <h2>Actors:</h2>
               <ul>
-                {dramaActorsArr.map((actor) => (
-                  <li key={actor.id}>{actor.actor_name}</li>
+                {dramaActorsArr.map((dramaActor) => (
+                  <li key={dramaActor.id}>{dramaActor?.Actor?.actor_name}</li>
                 ))}
               </ul>
-            </div> */}
+            </div>
           </div>
         </div>
         <div className="single-drama-buttons">
@@ -173,7 +185,7 @@ function SingleDramaPage() {
             <div className="single-drama-reviews">
               {!isOwner && (
                 <div className="single-drama-create-review">
-                  <OpenModalButton
+                  {/* <OpenModalButton
                     className="single-drama-create-button"
                     buttonText="Write a Review"
                     modalComponent={
@@ -182,7 +194,13 @@ function SingleDramaPage() {
                         submitted={() => setSubmitted(true)}
                       />
                     }
-                  />
+                  /> */}
+                  <button
+                    className="single-drama-create-button"
+                    onClick={featureComingSoon}
+                  >
+                    Write a Review
+                  </button>
                 </div>
               )}
               <div className="single-drama-review-container">
