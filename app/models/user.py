@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
 
     drama = db.relationship("Drama", back_populates="user")
     actor = db.relationship("Actor", back_populates="user")
+    actress = db.relationship("Actress", back_populates="user")
     like = db.relationship("Like", back_populates="user")
     review = db.relationship("Review", back_populates="user")
 
